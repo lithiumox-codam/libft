@@ -5,19 +5,19 @@
 #                                                      +:+                     #
 #    By: mdekker <mdekker@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
-#    Created: 2022/10/05 15:23:33 by mdekker       #+#    #+#                  #
-#    Updated: 2023/06/14 21:46:31 by mdekker       ########   odam.nl          #
+#    Created: 2023/06/14 23:09:11 by mdekker       #+#    #+#                  #
+#    Updated: 2023/06/14 23:10:38 by mdekker       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY: all clean fclean re run test
+.PHONY: all clean fclean re run test submodules
 
-CC=cc
-CFLAGS=-Wall -Wextra -Werror
-NAME=libft.a
-INCLUDES=-I ./
-BUILDDIR=build
-SRC = characters/ft_isalpha.c characters/ft_isdigit.c characters/ft_isalnum.c characters/ft_isascii.c  \
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+NAME = libft.a
+INCLUDES = -I ./
+BUILDDIR = build
+SRC = characters/ft_isalpha.c characters/ft_isdigit.c characters/ft_isalnum.c characters/ft_isascii.c \
 	characters/ft_toupper.c characters/ft_tolower.c memory/ft_bzero.c memory/ft_memcmp.c memory/ft_memset.c \
 	memory/ft_memcpy.c memory/ft_memmove.c memory/ft_memchr.c memory/ft_memchr.c characters/ft_isprint.c \
 	strings/ft_strlcpy.c strings/ft_strlcat.c strings/ft_strncmp.c \
@@ -28,22 +28,23 @@ SRC = characters/ft_isalpha.c characters/ft_isdigit.c characters/ft_isalnum.c ch
 	utils/math.c utils/string.c strings/ft_atol.c \
 	strings/ft_strcat.c strings/ft_strcpy.c
 
-PRINTF= printf/build/put.o printf/build/printf.o printf/build/utils.o
-GNL= gnl/build/get_next_line.o gnl/build/get_next_line_utils.o
-OBJECTS=$(addprefix $(BUILDDIR)/, $(SRC:.c=.o))
-FOLDERS=$(dir $(SRC))
-SPLIT=$(FOLDERS:/=)
-CAT=$(addprefix $(BUILDDIR)/, $(FOLDERS))
+PRINTF = printf/build/put.o printf/build/printf.o printf/build/utils.o
+OBJECTS = $(addprefix $(BUILDDIR)/, $(SRC:.c=.o))
+FOLDERS = $(dir $(SRC))
+SPLIT = $(FOLDERS:/=)
+CAT = $(addprefix $(BUILDDIR)/, $(FOLDERS))
 
-all: $(NAME)
+all: submodules $(NAME)
 
 clean:
 	@echo "🧨 Cleaning build folder..."
+	@make clean -C printf > /dev/null
 	@rm -rf $(BUILDDIR)
 	@echo "✅ Done!"
 
 fclean: clean
 	@echo "🧨 Force cleaning libft..."
+	@make fclean -C printf > /dev/null
 	@rm -f $(NAME)
 	@echo "✅ Done!"
 
@@ -55,15 +56,19 @@ $(BUILDDIR):
 	@mkdir -p $(BUILDDIR)
 
 $(PRINTF):
-	make -C printf
+	@echo "📥 Compiling printf..."
+	@make -C printf > /dev/null
 
-$(GNL):
-	make -C gnl
-
-$(NAME): $(OBJECTS) $(PRINTF) $(GNL)
+$(NAME): $(OBJECTS) $(PRINTF)
 	@echo "⚙️ Compiling..."
-	@ar rc $(NAME) $(OBJECTS) $(PRINTF) $(GNL)
+	@ar rc $(NAME) $(OBJECTS) $(PRINTF)
 	@echo "✅ Done!"
+
+submodules:
+	@echo "📥 Updating submodules..."
+	@git submodule sync
+	@git submodule update --init --recursive
+	@echo "✅ Submodules updated!"
 
 norm:
 	@echo "🧐 Norm-i-netting..."

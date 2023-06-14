@@ -6,14 +6,13 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/21 11:59:35 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/06/14 21:47:49 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/06/14 23:09:21 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include "gnl/get_next_line.h"
 # include "printf/includes/printf.h"
 # include <limits.h>
 # include <stdlib.h>
