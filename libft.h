@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/21 11:59:35 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/06/14 23:09:21 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/06/29 13:22:14 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ char	*ft_strrchr(const char *s, int c);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		checkchar(char c, char *comparison);
+int		ft_strcmp(const char *s1, const char *s2);
 
 /*
 ** Additional String Functions
