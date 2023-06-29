@@ -12,4 +12,4 @@ test.c
 !printf
 !gnl
 !.vscode
-!.github
+!.github/workflows/norminette.yml
