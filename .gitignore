@@ -12,3 +12,4 @@ test.c
 !printf
 !gnl
 !.vscode
+!.github
