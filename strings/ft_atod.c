@@ -3,32 +3,35 @@
 /*                                                        ::::::::            */
 /*   ft_atod.c                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
-/*                                                   +#+                      */
 /*   Created: 2023/05/21 11:52:58 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/05/21 21:39:22 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/07 23:25:12 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /**
- * @brief Calculates the power of a number
+ * @brief Gets the numbers behind the decimal
  *
- * @param str The number to calculate the power of
- * @param decimal The power to calculate
+ * @param str The left over numbers behind the dot
+ * @param decimal The decimal to add the numbers to
  * @return char* The string representation of the integer
  */
-static char	*ft_get_decimal(char *str, double *decimal)
+static void	ft_get_decimal(char *str, double *decimal)
 {
+	double	factor;
+
+	factor = 1;
 	if (*str == '.')
 		str++;
 	while (*str)
 	{
 		*decimal = *decimal * 10 + (*str - '0');
+		factor *= 10;
 		str++;
 	}
-	return (str);
+	*decimal /= factor;
+	ft_printf("decimal: %f\n", *decimal);
 }
 
 /**
@@ -57,7 +60,7 @@ double	ft_atod(char *str)
 		result = result * 10 + (*str - '0');
 		str++;
 	}
-	str = ft_get_decimal(str, &decimal);
+	ft_get_decimal(str, &decimal);
 	decimal /= ft_pow(10, ft_intlen((int)decimal));
 	return (sign * (result + decimal));
 }
