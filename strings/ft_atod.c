@@ -6,12 +6,11 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/07 23:30:50 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/08 01:14:12 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/08 01:20:30 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 /**
  * @brief Gets the numbers behind the decimal
@@ -63,7 +62,5 @@ double	ft_atod(char *str)
 		str++;
 	}
 	ft_get_decimal(str, &decimal);
-	printf("result: %f\n", result);
-	decimal /= ft_pow(10, ft_intlen((int)decimal));
 	return (sign * (result + decimal));
 }
