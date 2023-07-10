@@ -6,7 +6,7 @@
 #    By: mdekker <mdekker@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/06/14 23:09:11 by mdekker       #+#    #+#                  #
-#    Updated: 2023/06/29 13:22:52 by mdekker       ########   odam.nl          #
+#    Updated: 2023/07/10 10:25:52 by mdekker       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,8 +66,8 @@ $(NAME): $(OBJECTS) $(PRINTF)
 
 submodules:
 	@echo "📥 Updating submodules..."
-	@git submodule sync
-	@git submodule update --init --recursive
+	@git submodule sync > /dev/null
+	@git submodule update --init --recursive > /dev/null
 	@echo "✅ Submodules updated!"
 
 norm:
