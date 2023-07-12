@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/12 21:52:28 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/12 22:00:46 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/12 22:04:20 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 /**
  * @brief Reallocates a memory space, copies it then frees the old space
  *
- * @param str The string to reallocate
- * @param size The new size of the string
- * @return char* The reallocated string
+ * @param str The memory to reallocate
+ * @param size The new size of the space in bytes
+ * @return void* The reallocated memory or NULL when failed
  */
 
 void	*ft_realloc(void *ptr, size_t size)
