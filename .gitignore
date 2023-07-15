@@ -8,8 +8,8 @@
 !Makefile
 !.gitignore
 test.c
-.vscode
 !printf
 !gnl
 !.vscode
 !.github/workflows/norminette.yml
+!.vscode/*

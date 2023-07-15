@@ -6,7 +6,7 @@
 #    By: mdekker <mdekker@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/06/14 23:09:11 by mdekker       #+#    #+#                  #
-#    Updated: 2023/07/12 21:54:30 by mdekker       ########   odam.nl          #
+#    Updated: 2023/07/15 22:51:02 by mdekker       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
-INCLUDES = -I ./
+INCLUDES = -I $(CURDIR)/includes
 BUILDDIR = build
 SRC = characters/ft_isalpha.c characters/ft_isdigit.c characters/ft_isalnum.c characters/ft_isascii.c \
 	characters/ft_toupper.c characters/ft_tolower.c memory/ft_bzero.c memory/ft_memcmp.c memory/ft_memset.c \
@@ -25,8 +25,10 @@ SRC = characters/ft_isalpha.c characters/ft_isdigit.c characters/ft_isalnum.c ch
 	memory/ft_calloc.c strings/ft_strnstr.c strings/ft_strdup.c io/ft_putendl_fd.c io/ft_putstr_fd.c \
 	io/ft_putchar_fd.c io/ft_putnbr_fd.c strings/ft_itoa.c strings/ft_striteri.c strings/ft_substr.c \
 	strings/ft_strjoin.c strings/ft_strmapi.c strings/ft_strtrim.c strings/ft_split.c strings/ft_atod.c \
-	utils/math.c utils/string.c strings/ft_atol.c \
-	strings/ft_strcat.c strings/ft_strcpy.c strings/ft_strcmp.c memory/ft_realloc.c
+	utils/math.c utils/string.c strings/ft_atol.c strings/ft_strcat.c strings/ft_strcpy.c \
+	strings/ft_strcmp.c memory/ft_realloc.c memory/vector/ft_vec_init.c memory/vector/ft_vec_push.c \
+	memory/vector/ft_vec_pop.c memory/vector/ft_vec_get.c memory/vector/ft_vec_free.c \
+	memory/vector/ft_vec_insert.c memory/vector/ft_vec_remove.c
 
 PRINTF = printf/build/put.o printf/build/printf.o printf/build/utils.o
 OBJECTS = $(addprefix $(BUILDDIR)/, $(SRC:.c=.o))
