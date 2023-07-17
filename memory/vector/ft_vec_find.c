@@ -23,7 +23,7 @@
 
 size_t	ft_vec_find(t_vector *vec, void *data, int (*cmp)(void *, void *))
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < vec->size)
