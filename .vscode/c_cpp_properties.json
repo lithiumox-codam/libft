@@ -3,17 +3,22 @@
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/includes",
-                "${workspaceFolder}/printf"
+                "${workspaceFolder}/**"
             ],
             "macFrameworkPath": [
+                "/System/Library/Frameworks",
                 "/Library/Frameworks"
             ],
-            "defines": [],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c17",
             "cppStandard": "c++17",
-            "configurationProvider": "ms-vscode.makefile-tools"
+            "intelliSenseMode": "macos-clang-arm64",
+            "configurationProvider": "ms-vscode.cmake-tools"
         }
     ],
     "version": 4

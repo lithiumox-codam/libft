@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:19:09 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/15 22:29:34 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/17 21:18:46 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ bool	ft_vec_init(t_vector *vec, size_t size, size_t type_size)
 	if (!vec->data)
 		return (false);
 	vec->size = size;
+	vec->capacity = size;
 	vec->type_size = type_size;
 	return (true);
 }

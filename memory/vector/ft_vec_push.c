@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:26:05 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/15 22:38:18 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/17 21:20:24 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,17 @@ bool	ft_vec_push(t_vector *vec, void *data)
 {
 	void	*new;
 
-	if (vec->size == 0)
-		return (false);
-	new = ft_realloc(vec->data, vec->size + vec->type_size);
-	if (!new)
-		return (false);
-	vec->data = new;
-	ft_memcpy(vec->data + vec->size, data, vec->type_size);
-	vec->size += vec->type_size;
+	if (vec->size == vec->capacity)
+	{
+		new = ft_realloc(vec->data, vec->capacity * 2 * vec->type_size);
+		if (!new)
+		{
+			return (false);
+		}
+		vec->data = new;
+		vec->capacity *= 2;
+	}
+	ft_memcpy(vec->data + vec->size * vec->type_size, data, vec->type_size);
+	vec->size++;
 	return (true);
 }

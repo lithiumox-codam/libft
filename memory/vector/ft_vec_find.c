@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_vec_free.c                                      :+:    :+:            */
+/*   ft_vec_find.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/07/15 22:34:11 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/17 21:31:14 by mdekker       ########   odam.nl         */
+/*   Created: 2023/07/17 21:29:04 by mdekker       #+#    #+#                 */
+/*   Updated: 2023/07/17 21:29:25 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /**
- * @brief Frees a vector
+ * @brief Finds the first occurence of data in the vector
  *
- * @param vec The vector to free
- * @param free_data The function to free the data in the vector
+ * @param vec The vector to search in
+ * @param data The data to search for
+ * @param cmp The function to compare the data
+ * @return size_t The index of the first occurence, or -1 when not found
  */
-void	ft_vec_free(t_vector *vec, void (*free_data)(void *))
+
+size_t	ft_vec_find(t_vector *vec, void *data, int (*cmp)(void *, void *))
 {
-	size_t	i;
+	size_t i;
 
 	i = 0;
-	if (free_data)
+	while (i < vec->size)
 	{
-		while (i < vec->size)
-		{
-			free_data(vec->data + i * vec->type_size);
-			i++;
-		}
+		if (cmp(vec->data + i * vec->type_size, data) == 0)
+			return (i);
+		i++;
 	}
-	free(vec->data);
-	vec->data = NULL;
-	vec->size = 0;
-	vec->type_size = 0;
+	return (-1);
 }

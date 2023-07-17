@@ -6,7 +6,7 @@
 #    By: mdekker <mdekker@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/06/14 23:09:11 by mdekker       #+#    #+#                  #
-#    Updated: 2023/07/15 22:51:02 by mdekker       ########   odam.nl          #
+#    Updated: 2023/07/17 21:30:55 by mdekker       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC = characters/ft_isalpha.c characters/ft_isdigit.c characters/ft_isalnum.c ch
 	utils/math.c utils/string.c strings/ft_atol.c strings/ft_strcat.c strings/ft_strcpy.c \
 	strings/ft_strcmp.c memory/ft_realloc.c memory/vector/ft_vec_init.c memory/vector/ft_vec_push.c \
 	memory/vector/ft_vec_pop.c memory/vector/ft_vec_get.c memory/vector/ft_vec_free.c \
-	memory/vector/ft_vec_insert.c memory/vector/ft_vec_remove.c
+	memory/vector/ft_vec_insert.c memory/vector/ft_vec_remove.c memory/vector/ft_vec_find.c \
 
 PRINTF = printf/build/put.o printf/build/printf.o printf/build/utils.o
 OBJECTS = $(addprefix $(BUILDDIR)/, $(SRC:.c=.o))
