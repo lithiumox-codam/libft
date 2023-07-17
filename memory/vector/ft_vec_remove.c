@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:47:29 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/18 00:16:12 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/18 00:31:37 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ void	*ft_vec_remove(t_vector *v, size_t i)
 {
 	void	*new;
 
-	if (i > v->size)
+	if (i > v->lenght)
 		return (NULL);
-	new = ft_calloc(v->size * v->type_size - v->type_size, 1);
+	new = ft_calloc(v->lenght * v->type_size - v->type_size, 1);
 	if (!new)
 		return (NULL);
 	ft_memcpy(new, v->data, i * v->type_size);
 	ft_memmove(
 		v->data + i * v->type_size,
 		v->data + (i + 1) * v->type_size,
-		(v->size - i - 1) * v->type_size);
+		(v->lenght - i - 1) * v->type_size);
 	free(v->data);
 	v->data = new;
-	v->size -= v->type_size;
+	v->lenght -= v->type_size;
 	return (v->data);
 }

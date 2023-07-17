@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:19:09 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/18 00:16:12 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/18 00:26:27 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
  */
 bool	ft_vec_init(t_vector *vec, size_t capacity, size_t type_size)
 {
-	vec->data = ft_calloc(capacity, type_size);
+	vec->data = malloc(capacity * type_size);
 	if (!vec->data)
 		return (false);
-	vec->size = 0;
+	vec->lenght = 0;
 	vec->capacity = capacity;
 	vec->type_size = type_size;
 	return (true);

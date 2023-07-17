@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:20:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/18 00:00:56 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/18 00:26:34 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 typedef struct s_vector
 {
 	void	*data;
-	size_t	size;
+	size_t	lenght;
 	size_t	type_size;
 	size_t	capacity;
 }			t_vector;
