@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_vec_free.c                                      :+:    :+:            */
+/*   ft_vec_apply.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/07/15 22:34:11 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/17 23:54:28 by mdekker       ########   odam.nl         */
+/*   Created: 2023/07/17 23:48:40 by mdekker       #+#    #+#                 */
+/*   Updated: 2023/07/17 23:49:39 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /**
- * @brief Frees a vector and the data in it
+ * @brief Applies a function to all elements in the vector
  *
- * @param vec The vector to free
- * @param free_data The function to free the data in the vector
+ * @param vec The vector to apply the function to
+ * @param f The function to apply
  */
-void	ft_vec_free(t_vector *vec, void (*free_data)(void *))
+void	ft_vec_apply(t_vector *vec, void (*f)(void *))
 {
 	size_t	i;
 
 	i = -1;
-	if (free_data)
-		while (i++ < vec->size)
-			free_data(vec->data + i * vec->type_size);
-	vec->data = NULL;
-	vec->size = 0;
-	vec->type_size = 0;
-	vec->capacity = 0;
-	free(vec);
+	while (i++ < vec->size)
+		f(vec->data + i * vec->type_size);
 }
