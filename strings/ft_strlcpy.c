@@ -6,11 +6,11 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/06 16:07:31 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/05/21 11:44:49 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/18 00:16:12 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
 /**
  * @brief Copies a string to a destination

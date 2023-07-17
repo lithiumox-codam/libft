@@ -6,11 +6,11 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/06 16:07:20 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/05/14 00:37:24 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/18 00:16:12 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
 static void	ft_loop(char *dst, char *src, size_t len, size_t dir)
 {

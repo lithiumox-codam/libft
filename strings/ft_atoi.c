@@ -6,11 +6,11 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/06 16:06:51 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/05/21 15:56:42 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/18 00:16:12 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
 /**
  * @brief Converts a string to an integer

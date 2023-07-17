@@ -6,11 +6,11 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/06 16:07:13 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/05/14 00:35:11 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/18 00:16:12 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
 /**
  * @brief Compares two memory areas

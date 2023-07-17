@@ -6,11 +6,11 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/20 17:51:55 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/05/14 00:50:35 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/18 00:16:12 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
 /**
  * @brief Locates the first occurrence of the null-terminated string needle

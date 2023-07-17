@@ -6,11 +6,11 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/06 16:07:17 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/05/14 00:36:08 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/18 00:16:53 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <libft.h>
 
 /**
  * @brief Copies n bytes from src to dst
