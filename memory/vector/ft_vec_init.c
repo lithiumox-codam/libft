@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:19:09 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/17 21:18:46 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/17 22:13:52 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
  * @brief Initializes a vector
  *
  * @param vec The vector to initialize
- * @param size The size of the vector
- * @param type_size The size of the type of the vector
+ * @param size The initial size of the vector
+ * @param type_size The size of the content of the vector
  * @return bool true when succeeded, false when failed
  */
 bool	ft_vec_init(t_vector *vec, size_t size, size_t type_size)
@@ -25,7 +25,7 @@ bool	ft_vec_init(t_vector *vec, size_t size, size_t type_size)
 	vec->data = ft_calloc(size, type_size);
 	if (!vec->data)
 		return (false);
-	vec->size = size;
+	vec->size = 0;
 	vec->capacity = size;
 	vec->type_size = type_size;
 	return (true);
