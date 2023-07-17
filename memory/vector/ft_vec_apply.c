@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/17 23:48:40 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/17 23:56:01 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/17 23:59:50 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void	ft_vec_apply(t_vector *vec, void (*f)(void *))
 {
 	size_t	i;
 
-	i = -1;
-	while (++i < vec->size)
+	i = 0;
+	while (i < vec->size)
+	{
 		f(vec->data + i * vec->type_size);
+		i++;
+	}
 }
