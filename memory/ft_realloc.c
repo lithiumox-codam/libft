@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/12 21:52:28 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/18 00:16:12 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/18 21:31:17 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	*ft_realloc(void *ptr, size_t size)
 	new = ft_calloc(1, size);
 	if (!new)
 		return (NULL);
-	ft_memcpy(new, ptr, size);
-	free(ptr);
+	if (ptr != NULL)
+	{
+		ft_memcpy(new, ptr, size);
+		free(ptr);
+	}
 	return (new);
 }
