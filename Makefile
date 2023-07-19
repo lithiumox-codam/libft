@@ -6,11 +6,16 @@
 #    By: mdekker <mdekker@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/06/14 23:09:11 by mdekker       #+#    #+#                  #
-#    Updated: 2023/07/18 22:12:10 by mdekker       ########   odam.nl          #
+#    Updated: 2023/07/19 22:56:01 by mdekker       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY: all clean fclean re run test submodules
+
+DEBUG ?= 0
+ifeq ($(DEBUG), 1)
+	CFLAGS += -g
+endif
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
