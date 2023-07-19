@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/18 21:55:06 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/19 11:43:48 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/19 13:17:45 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * @param new_lenght The new size of the vector
  * @return bool true if the resize was successful, false if not
  */
-bool	ft_vec_resize(t_vector *vec, size_t new_lenght)
+void	*ft_vec_resize(t_vector *vec, size_t new_lenght)
 {
 	void	*new;
 
@@ -41,7 +41,7 @@ bool	ft_vec_resize(t_vector *vec, size_t new_lenght)
 	if (!new)
 	{
 		ft_vec_free(vec, true);
-		return (false);
+		return (NULL);
 	}
 	vec->data = new;
 	vec->capacity = new_lenght;

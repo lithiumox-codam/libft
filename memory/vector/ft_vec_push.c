@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:26:05 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/19 11:42:41 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/19 16:47:33 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	*ft_vec_push(t_vector *vec, void *data)
 			ft_vec_free(vec, true);
 			return (NULL);
 		}
-		ft_vec_free(vec, false);
+		free(vec->data);
 		vec->data = new;
 		vec->capacity *= 2;
 	}
