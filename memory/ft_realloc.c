@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/12 21:52:28 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/18 21:31:17 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/19 11:21:27 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
  * @param ptr The memory to reallocate
  * @param size The new size of the space in bytes
  * @return void* The reallocated memory or NULL when failed
+ *
+ * @warning Does not free the origional pointer! Watch out for memory leaks
  */
-
 void	*ft_realloc(void *ptr, size_t size)
 {
 	void	*new;
@@ -28,9 +29,6 @@ void	*ft_realloc(void *ptr, size_t size)
 	if (!new)
 		return (NULL);
 	if (ptr != NULL)
-	{
 		ft_memcpy(new, ptr, size);
-		free(ptr);
-	}
 	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:19:09 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/18 21:45:54 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/19 10:51:49 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
  * @brief Initializes a vector
  *
  * @param vec The vector to initialize
- * @param capacity The initial size of the vector
+ * @param capacity The total amount of elements the vector can hold
  * @param type_size The size of the content of the vector
+ * @param f The function to free the data in the vector or NULL when not needed
  * @return void * The initialized vector or NULL if malloc fails
  */
-void	*ft_vec_init(t_vector *vec, size_t capacity, size_t type_size)
+void	*ft_vec_init(t_vector *vec, size_t capacity, size_t type_size,
+		void (*free)(void *))
 {
 	vec->data = malloc(capacity * type_size);
 	if (!vec->data)
@@ -28,5 +30,6 @@ void	*ft_vec_init(t_vector *vec, size_t capacity, size_t type_size)
 	vec->lenght = 0;
 	vec->capacity = capacity;
 	vec->type_size = type_size;
+	vec->free_func = free;
 	return (vec);
 }

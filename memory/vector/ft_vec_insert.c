@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:40:55 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/18 21:34:56 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/19 11:43:32 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @return bool true when succeeded, false when failed
  *
  */
-bool	ft_vec_insert(t_vector *v, size_t i, void *data)
+void	*ft_vec_insert(t_vector *v, size_t i, void *data)
 {
 	void	*new;
 
@@ -31,7 +31,11 @@ bool	ft_vec_insert(t_vector *v, size_t i, void *data)
 	{
 		new = ft_realloc(v->data, v->capacity * 2 * v->type_size);
 		if (!new)
-			return (false);
+		{
+			ft_vec_free(v, true);
+			return (NULL);
+		}
+		free(v->data);
 		v->data = new;
 		v->capacity *= 2;
 	}
@@ -41,5 +45,5 @@ bool	ft_vec_insert(t_vector *v, size_t i, void *data)
 		(v->lenght - i) * v->type_size);
 	ft_memcpy(v->data + i * v->type_size, data, v->type_size);
 	v->lenght++;
-	return (true);
+	return (v->data += v->lenght * v->type_size);
 }

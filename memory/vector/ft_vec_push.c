@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:26:05 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/18 00:31:18 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/19 11:42:41 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * @param data The data to push
  * @return bool true when succeeded, false when failed
  */
-bool	ft_vec_push(t_vector *vec, void *data)
+void	*ft_vec_push(t_vector *vec, void *data)
 {
 	void	*new;
 
@@ -28,12 +28,14 @@ bool	ft_vec_push(t_vector *vec, void *data)
 		new = ft_realloc(vec->data, vec->capacity * 2 * vec->type_size);
 		if (!new)
 		{
-			return (false);
+			ft_vec_free(vec, true);
+			return (NULL);
 		}
+		ft_vec_free(vec, false);
 		vec->data = new;
 		vec->capacity *= 2;
 	}
 	ft_memcpy(vec->data + vec->lenght * vec->type_size, data, vec->type_size);
 	vec->lenght++;
-	return (true);
+	return (vec->data += vec->lenght * vec->type_size);
 }
