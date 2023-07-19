@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/18 21:55:06 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/19 13:17:45 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/19 16:48:12 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  *
  * @param vec The vector to resize
  * @param new_lenght The new size of the vector
- * @return bool true if the resize was successful, false if not
+ * @return void* The new data pointer or NULL when failed
  */
 void	*ft_vec_resize(t_vector *vec, size_t new_lenght)
 {
@@ -33,10 +33,10 @@ void	*ft_vec_resize(t_vector *vec, size_t new_lenght)
 		vec->data = NULL;
 		vec->lenght = 0;
 		vec->capacity = 0;
-		return (true);
+		return (NULL);
 	}
 	if (new_lenght < vec->lenght)
-		return (false);
+		return (NULL);
 	new = ft_realloc(vec->data, new_lenght * vec->type_size);
 	if (!new)
 	{
@@ -45,5 +45,5 @@ void	*ft_vec_resize(t_vector *vec, size_t new_lenght)
 	}
 	vec->data = new;
 	vec->capacity = new_lenght;
-	return (true);
+	return (vec->data);
 }

@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:20:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/19 11:41:24 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/19 16:48:24 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ void		*ft_vec_push(t_vector *vec, void *data);
 void		*ft_vec_insert(t_vector *v, size_t i, void *data);
 void		ft_vec_apply(t_vector *vec, void (*f)(void *));
 void		ft_vec_free(t_vector *vec, bool clear_content);
-bool		ft_vec_resize(t_vector *vec, size_t new_size);
-
+void		*ft_vec_resize(t_vector *vec, size_t new_lenght);
 #endif
