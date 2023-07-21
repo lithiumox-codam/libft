@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/21 13:09:13 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/21 14:09:56 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/21 14:11:55 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,10 @@ static void	*replace_multiple_elements(t_vector *vec, size_t index,
 			return (NULL);
 	move_existing_elements(vec, index, data_count);
 	copy_new_elements(vec, index, data_count, data);
+	return (vec->data + index * vec->type_size);
 }
 
-void	ft_vec_replace_multiple(t_vector *vec, size_t index, void **data)
+void	*ft_vec_replace_multiple(t_vector *vec, size_t index, void **data)
 {
 	size_t	data_count;
 
@@ -73,11 +74,11 @@ void	ft_vec_replace_multiple(t_vector *vec, size_t index, void **data)
 	while (data[data_count])
 		data_count++;
 	if (data_count == 0)
-		return ;
+		return (NULL);
 	if (data_count == 1)
 	{
 		replace_single_element(vec, index, data);
-		return ;
+		return (vec->data + index * vec->type_size);
 	}
 	data_count--;
 	if (!replace_multiple_elements(vec, index, data_count, data))
