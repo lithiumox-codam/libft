@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:34:11 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/21 02:30:55 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/21 02:50:46 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
  * @brief Frees a vector and the data in it
  *
  * @param vec The vector to free
- * @param f The function to free the data in the vector
  */
-void	ft_vec_free(t_vector *vec, void (*f)(void *))
+void	ft_vec_free(t_vector *vec)
 
 {
 	size_t i;
 	i = 0;
-	if (f)
+
+	if (vec->f)
 	{
 		while (i < vec->lenght)
 		{

@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:20:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/21 02:46:39 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/21 02:50:04 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void		*ft_vec_remove(t_vector *v, size_t i, void (*f)(void *));
 void		*ft_vec_find(t_vector *vec, bool (*cmp)(void *));
 void		**ft_vec_find_multiple(t_vector *vec, bool (*cmp)(void *));
 void		ft_vec_apply(t_vector *vec, void (*f)(void *));
-void		ft_vec_free(t_vector *vec, void (*free_data)(void *));
+void		ft_vec_free(t_vector *vec);
 bool		ft_vec_insert(t_vector *v, size_t i, void *data);
 bool		ft_vec_push(t_vector *vec, void *data);
 bool		ft_vec_resize(t_vector *vec, size_t new_size);
