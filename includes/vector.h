@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:20:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/21 02:50:04 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/21 03:42:35 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@
  * @param insert The function to insert an element in the vector
  * @param push The function to push an element to the vector
  * @param resize The function to resize the vector
-
-	* @param count The function to count the amount of occurences of a value in the vector
+ * @param count The function to count the amount of occurences of a value
  * @param get The function to get an element from the vector
  * @return void
  *

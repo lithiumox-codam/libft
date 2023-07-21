@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:34:11 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/21 02:52:43 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/21 03:43:40 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	ft_vec_free(t_vector *vec)
 
 {
 	size_t i;
-	i = 0;
 
+	i = 0;
 	if (vec->f)
 	{
 		while (i < vec->lenght)
@@ -36,4 +36,5 @@ void	ft_vec_free(t_vector *vec)
 	vec->lenght = 0;
 	vec->capacity = 0;
 	vec->type_size = 0;
+	vec->f = NULL;
 }
