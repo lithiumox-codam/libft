@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:19:09 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/21 04:06:39 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/21 13:03:57 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	*ft_vec_init(t_vector *vec, size_t capacity, size_t type_size,
 	vec->capacity = capacity;
 	vec->type_size = type_size;
 	vec->f = free_data;
-	vec->loc = vec;
 	vec->find = ft_vec_find;
 	vec->find_multiple = ft_vec_find_multiple;
 	vec->apply = ft_vec_apply;

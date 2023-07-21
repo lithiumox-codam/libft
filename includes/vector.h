@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:20:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/21 04:06:24 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/21 13:01:45 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,36 +38,35 @@
  */
 typedef struct s_vector
 {
-	void			*data;
-	size_t			lenght;
-	size_t			type_size;
-	size_t			capacity;
-	struct t_vector	*loc;
-	void			(*f)(void *);
-	void			*(*find)(struct s_vector *, bool (*)(void *));
-	void			**(*find_multiple)(struct s_vector *, bool (*)(void *));
-	void			(*apply)(struct s_vector *, void (*)(void *));
-	void			*(*pop)(struct s_vector *);
-	void			*(*remove)(struct s_vector *, size_t, void (*)(void *));
-	bool			(*insert)(struct s_vector *, size_t, void *);
-	bool			(*push)(struct s_vector *, void *);
-	bool			(*resize)(struct s_vector *, size_t);
-	size_t			(*count)(struct s_vector *, bool (*)(void *));
-	void			*(*get)(struct s_vector *, size_t);
-}					t_vector;
+	void	*data;
+	size_t	lenght;
+	size_t	type_size;
+	size_t	capacity;
+	void	(*f)(void *);
+	void	*(*find)(struct s_vector *, bool (*)(void *));
+	void	**(*find_multiple)(struct s_vector *, bool (*)(void *));
+	void	(*apply)(struct s_vector *, void (*)(void *));
+	void	*(*pop)(struct s_vector *);
+	void	*(*remove)(struct s_vector *, size_t, void (*)(void *));
+	bool	(*insert)(struct s_vector *, size_t, void *);
+	bool	(*push)(struct s_vector *, void *);
+	bool	(*resize)(struct s_vector *, size_t);
+	size_t	(*count)(struct s_vector *, bool (*)(void *));
+	void	*(*get)(struct s_vector *, size_t);
+}			t_vector;
 
-void				*ft_vec_init(t_vector *vec, size_t capacity,
-						size_t type_size, void (*free)(void *));
-void				*ft_vec_get(t_vector *vec, size_t index);
-void				*ft_vec_pop(t_vector *vec);
-void				*ft_vec_remove(t_vector *v, size_t i, void (*f)(void *));
-void				*ft_vec_find(t_vector *vec, bool (*cmp)(void *));
-void				**ft_vec_find_multiple(t_vector *vec, bool (*cmp)(void *));
-void				ft_vec_apply(t_vector *vec, void (*f)(void *));
-void				ft_vec_free(t_vector *vec);
-bool				ft_vec_insert(t_vector *v, size_t i, void *data);
-bool				ft_vec_push(t_vector *vec, void *data);
-bool				ft_vec_resize(t_vector *vec, size_t new_size);
-size_t				ft_vec_count(t_vector *vec, bool (*f)(void *));
+void		*ft_vec_init(t_vector *vec, size_t capacity, size_t type_size,
+				void (*free)(void *));
+void		*ft_vec_get(t_vector *vec, size_t index);
+void		*ft_vec_pop(t_vector *vec);
+void		*ft_vec_remove(t_vector *v, size_t i, void (*f)(void *));
+void		*ft_vec_find(t_vector *vec, bool (*cmp)(void *));
+void		**ft_vec_find_multiple(t_vector *vec, bool (*cmp)(void *));
+void		ft_vec_apply(t_vector *vec, void (*f)(void *));
+void		ft_vec_free(t_vector *vec);
+bool		ft_vec_insert(t_vector *v, size_t i, void *data);
+bool		ft_vec_push(t_vector *vec, void *data);
+bool		ft_vec_resize(t_vector *vec, size_t new_size);
+size_t		ft_vec_count(t_vector *vec, bool (*f)(void *));
 
 #endif
