@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/21 13:09:13 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/21 14:11:55 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/21 20:05:56 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,16 @@ static void	copy_new_elements(t_vector *vec, size_t index, size_t data_count,
 static void	*replace_multiple_elements(t_vector *vec, size_t index,
 		size_t data_count, void **data)
 {
+	void	*new;
+
 	while (index + data_count > vec->capacity)
-		if (!ft_vec_resize(vec, vec->capacity * 2))
+	{
+		new = ft_realloc(vec->data, vec->capacity * 2 * vec->type_size);
+		if (!new)
 			return (NULL);
+		vec->data = new;
+		vec->capacity *= 2;
+	}
 	move_existing_elements(vec, index, data_count);
 	copy_new_elements(vec, index, data_count, data);
 	return (vec->data + index * vec->type_size);
