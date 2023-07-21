@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:20:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/21 13:01:45 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/21 13:32:49 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_vector
 	bool	(*resize)(struct s_vector *, size_t);
 	size_t	(*count)(struct s_vector *, bool (*)(void *));
 	void	*(*get)(struct s_vector *, size_t);
+	void	(*replace_multiple)(struct s_vector *, size_t, void **);
 }			t_vector;
 
 void		*ft_vec_init(t_vector *vec, size_t capacity, size_t type_size,
@@ -68,5 +69,5 @@ bool		ft_vec_insert(t_vector *v, size_t i, void *data);
 bool		ft_vec_push(t_vector *vec, void *data);
 bool		ft_vec_resize(t_vector *vec, size_t new_size);
 size_t		ft_vec_count(t_vector *vec, bool (*f)(void *));
-
+void		ft_vec_replace_multiple(t_vector *vec, size_t index, void **data);
 #endif
