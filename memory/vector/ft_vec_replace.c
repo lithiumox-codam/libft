@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_vec_replace_multiple.c                          :+:    :+:            */
+/*   ft_vec_replace.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/21 13:09:13 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/22 16:19:33 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/22 17:26:13 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	*ft_vec_replace(t_vector *vec, size_t index, void **data)
 	}
 	data_count--;
 	i = 0;
-	while (i < data_count)
+	while (!data[i] && i < data_count)
 	{
 		if (!ft_vec_insert(vec, index + i, data[i]))
 			return (NULL);
