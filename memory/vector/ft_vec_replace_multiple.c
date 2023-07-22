@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/21 13:09:13 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/21 20:05:56 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/22 16:17:06 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,60 +20,10 @@
  * @param index The index of the element to replace
  * @param data The data to replace with (can be multiple elements)
  */
-static void	replace_single_element(t_vector *vec, size_t index, void **data)
-{
-	ft_memcpy(vec->data + index * vec->type_size, data[0], vec->type_size);
-}
-
-static void	move_existing_elements(t_vector *vec, size_t index,
-		size_t data_count)
-{
-	if (index + data_count <= vec->lenght)
-	{
-		ft_memmove(
-			vec->data + (index + data_count) * vec->type_size,
-			vec->data + index * vec->type_size,
-			(vec->lenght - index) * vec->type_size);
-	}
-}
-
-static void	copy_new_elements(t_vector *vec, size_t index, size_t data_count,
-		void **data)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < data_count)
-	{
-		ft_memcpy(
-			vec->data + (index + i) * vec->type_size,
-			data[i],
-			vec->type_size);
-		i++;
-	}
-}
-
-static void	*replace_multiple_elements(t_vector *vec, size_t index,
-		size_t data_count, void **data)
-{
-	void	*new;
-
-	while (index + data_count > vec->capacity)
-	{
-		new = ft_realloc(vec->data, vec->capacity * 2 * vec->type_size);
-		if (!new)
-			return (NULL);
-		vec->data = new;
-		vec->capacity *= 2;
-	}
-	move_existing_elements(vec, index, data_count);
-	copy_new_elements(vec, index, data_count, data);
-	return (vec->data + index * vec->type_size);
-}
-
 void	*ft_vec_replace_multiple(t_vector *vec, size_t index, void **data)
 {
 	size_t	data_count;
+	size_t	i;
 
 	data_count = 0;
 	if (vec->f)
@@ -84,12 +34,17 @@ void	*ft_vec_replace_multiple(t_vector *vec, size_t index, void **data)
 		return (NULL);
 	if (data_count == 1)
 	{
-		replace_single_element(vec, index, data);
+		ft_vec_set(vec, index, data[0]);
 		return (vec->data + index * vec->type_size);
 	}
 	data_count--;
-	if (!replace_multiple_elements(vec, index, data_count, data))
-		return (NULL);
+	i = 0;
+	while (i < data_count)
+	{
+		if (!ft_vec_insert(vec, index + i, data[i]))
+			return (NULL);
+		i++;
+	}
 	vec->lenght += data_count;
 	return (vec->data + index * vec->type_size);
 }

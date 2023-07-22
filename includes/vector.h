@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:20:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/21 14:11:03 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/22 16:17:37 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_vector
 void		*ft_vec_init(t_vector *vec, size_t capacity, size_t type_size,
 				void (*free)(void *));
 void		*ft_vec_get(t_vector *vec, size_t index);
+void		*ft_vec_set(t_vector *vec, size_t index, void *data);
 void		*ft_vec_pop(t_vector *vec);
 void		*ft_vec_remove(t_vector *v, size_t i, void (*f)(void *));
 void		*ft_vec_find(t_vector *vec, bool (*cmp)(void *));
