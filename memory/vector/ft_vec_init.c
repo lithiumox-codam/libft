@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:19:09 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/22 16:33:10 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/22 16:38:19 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	*ft_vec_init(t_vector *vec, size_t capacity, size_t type_size,
 	vec->resize = ft_vec_resize;
 	vec->count = ft_vec_count;
 	vec->get = ft_vec_get;
+	vec->set = ft_vec_set;
 	vec->replace = ft_vec_replace;
 	return (vec);
 }

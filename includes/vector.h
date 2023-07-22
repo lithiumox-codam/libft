@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:20:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/22 16:32:53 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/22 16:38:07 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_vector
 	bool	(*resize)(struct s_vector *, size_t);
 	size_t	(*count)(struct s_vector *, bool (*)(void *));
 	void	*(*get)(struct s_vector *, size_t);
+	void	*(*set)(struct s_vector *, size_t, void *);
 	void	*(*replace)(struct s_vector *, size_t, void **);
 }			t_vector;
 
