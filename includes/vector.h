@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:20:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/24 09:48:30 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/24 10:37:21 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_vector
 	size_t	(*count)(struct s_vector *, bool (*)(void *));
 	void	*(*get)(struct s_vector *, size_t);
 	void	*(*set)(struct s_vector *, size_t, void *);
-	void	*(*replace)(struct s_vector *, size_t, void **);
+	void	*(*replace)(struct s_vector *, size_t, void *);
 }			t_vector;
 
 void		*ft_vec_init(t_vector *vec, size_t capacity, size_t type_size,
@@ -78,7 +78,7 @@ void		*ft_vec_set(t_vector *vec, size_t index, void *data);
 void		*ft_vec_pop(t_vector *vec);
 void		*ft_vec_remove(t_vector *v, size_t i);
 t_found		**ft_vec_find(t_vector *vec, bool (*cmp)(void *));
-void		*ft_vec_replace(t_vector *vec, size_t index, void **data);
+void		*ft_vec_replace(t_vector *vec, size_t index, void *data);
 void		ft_vec_apply(t_vector *vec, void (*f)(void *));
 void		ft_vec_free(t_vector *vec);
 bool		ft_vec_insert(t_vector *v, size_t i, void *data);
