@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/21 13:09:13 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/22 17:26:13 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/24 09:46:24 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	*ft_vec_replace(t_vector *vec, size_t index, void **data)
 		return (NULL);
 	if (data_count == 1)
 	{
-		ft_vec_set(vec, index, data[0]);
+		if (!ft_vec_set(vec, index, data[0]))
+			return (NULL);
 		return (vec->data + index * vec->type_size);
 	}
 	data_count--;

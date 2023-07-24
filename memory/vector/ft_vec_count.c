@@ -6,14 +6,15 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/20 23:10:32 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/21 02:30:31 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/24 09:47:29 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
 /**
- * @brief Counts the amount of occurences of a value in a vector
+ * @brief Counts the amount of occurences in a vector using a function provided
+ * by the user.
  *
  * @param vec The vector to count in
  * @param f The function to use to compare the values

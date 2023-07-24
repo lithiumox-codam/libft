@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/18 21:55:06 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/21 20:02:37 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/24 09:44:03 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,7 @@ bool	ft_vec_resize(t_vector *vec, size_t new_lenght)
 {
 	void	*new;
 
-	if (new_lenght == 0)
-	{
-		free(vec->data);
-		vec->data = NULL;
-		vec->lenght = 0;
-		vec->capacity = 0;
-		return (true);
-	}
-	if (new_lenght < vec->lenght)
+	if (new_lenght == 0 || new_lenght < vec->lenght)
 		return (false);
 	new = ft_realloc(vec->data, new_lenght * vec->type_size);
 	if (!new)

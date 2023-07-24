@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:20:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/22 16:38:07 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/24 09:48:30 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_vector
 	t_found	**(*find)(struct s_vector *, bool (*)(void *));
 	void	(*apply)(struct s_vector *, void (*)(void *));
 	void	*(*pop)(struct s_vector *);
-	void	*(*remove)(struct s_vector *, size_t, void (*)(void *));
+	void	*(*remove)(struct s_vector *, size_t);
 	bool	(*insert)(struct s_vector *, size_t, void *);
 	bool	(*push)(struct s_vector *, void *);
 	bool	(*resize)(struct s_vector *, size_t);
@@ -76,7 +76,7 @@ void		*ft_vec_init(t_vector *vec, size_t capacity, size_t type_size,
 void		*ft_vec_get(t_vector *vec, size_t index);
 void		*ft_vec_set(t_vector *vec, size_t index, void *data);
 void		*ft_vec_pop(t_vector *vec);
-void		*ft_vec_remove(t_vector *v, size_t i, void (*f)(void *));
+void		*ft_vec_remove(t_vector *v, size_t i);
 t_found		**ft_vec_find(t_vector *vec, bool (*cmp)(void *));
 void		*ft_vec_replace(t_vector *vec, size_t index, void **data);
 void		ft_vec_apply(t_vector *vec, void (*f)(void *));

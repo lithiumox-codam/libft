@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:47:29 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/18 21:33:39 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/24 09:48:59 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
  * leak willoccur. If the data doesnt need to be freed, the function can
  * be set to NULL.
  */
-void	*ft_vec_remove(t_vector *v, size_t i, void (*f)(void *))
+void	*ft_vec_remove(t_vector *v, size_t i)
 {
 	void	*new;
 
@@ -34,8 +34,8 @@ void	*ft_vec_remove(t_vector *v, size_t i, void (*f)(void *))
 	if (!new)
 		return (NULL);
 	ft_memcpy(new, v->data, i * v->type_size);
-	if (f != NULL)
-		f(v->data + i * v->type_size);
+	if (v->f)
+		v->f(v->data + i * v->type_size);
 	ft_memmove(
 		v->data + i * v->type_size,
 		v->data + (i + 1) * v->type_size,

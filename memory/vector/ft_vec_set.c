@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/22 15:38:28 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/22 16:17:25 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/24 09:45:27 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ void	*ft_vec_set(t_vector *vec, size_t index, void *data)
 	if (vec->f)
 		vec->f(vec->data + index * vec->type_size);
 	ft_memcpy(vec->data + index * vec->type_size, data, vec->type_size);
-	free(data);
 	return (vec->data + index * vec->type_size);
 }

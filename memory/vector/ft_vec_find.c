@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/21 02:41:44 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/22 16:28:20 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/24 09:47:05 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static t_found	*create_struct(void *data, size_t index)
  *
  * @param vec The vector to search in
  * @param cmp The function to compare the data
- * @return t_found** A list of found items ending with NULL or NULL when failed
+ * @return t_found** A list of found items with their index in the vector,
+ * ending with NULL or NULL when failed
  */
 t_found	**ft_vec_find(t_vector *vec, bool (*cmp)(void *))
 {
