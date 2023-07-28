@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/21 02:41:44 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/28 17:44:44 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/28 17:45:35 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static bool	find_matches(t_vector *vec, bool (*cmp)(void *), t_found **found)
 		}
 		i++;
 	}
+	found[j] = NULL;
+	return (true);
 }
 
 /**
@@ -79,6 +81,5 @@ t_found	**ft_vec_find(t_vector *vec, bool (*cmp)(void *))
 		return (NULL);
 	count = 0;
 	find_matches(vec, cmp, found);
-	found[count] = NULL;
 	return (found);
 }
