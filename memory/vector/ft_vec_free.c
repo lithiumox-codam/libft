@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:34:11 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/21 13:30:07 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/28 23:06:19 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@
  * @param vec The vector to free
  */
 void	ft_vec_free(t_vector *vec)
-
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (vec->f)

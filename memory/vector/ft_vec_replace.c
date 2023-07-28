@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/21 13:09:13 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/24 10:36:31 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/28 23:07:13 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
  * @param index The index of the element to replace
  * @param data The data to replace with
  *
-
-	* @return void* The pointer to the replaced element or NULL if the replacement failed
+ * @return void* The pointer to the replaced element or NULL if the
+ * replacement failed
  *
- * @note The vector must be able to contain the data that is being inserted
+ * !TODO add a function to replace multiple elements at once
  */
 void	*ft_vec_replace(t_vector *vec, size_t index, void *data)
 {
