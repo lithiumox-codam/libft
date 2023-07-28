@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/21 02:41:44 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/28 17:45:35 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/07/28 17:55:30 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static bool	find_matches(t_vector *vec, bool (*cmp)(void *), t_found **found)
 	size_t	j;
 
 	i = 0;
+	j = 0;
 	while (i < vec->lenght)
 	{
 		if (cmp(vec->data + i * vec->type_size) == true)
@@ -68,11 +69,9 @@ static bool	find_matches(t_vector *vec, bool (*cmp)(void *), t_found **found)
  */
 t_found	**ft_vec_find(t_vector *vec, bool (*cmp)(void *))
 {
-	size_t	i;
 	size_t	count;
 	t_found	**found;
 
-	i = 0;
 	count = ft_vec_count(vec, cmp);
 	if (count == 0)
 		return (NULL);
