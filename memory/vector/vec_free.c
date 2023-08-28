@@ -22,11 +22,11 @@ void	vec_free(t_vector *vec)
 	size_t	i;
 
 	i = 0;
-	if (vec->f)
+	if (vec->free)
 	{
 		while (i < vec->length)
 		{
-			vec->f(vec->data + i * vec->type_size);
+			vec->free(vec->data + i * vec->type_size);
 			i++;
 		}
 	}
@@ -35,5 +35,5 @@ void	vec_free(t_vector *vec)
 	vec->length = 0;
 	vec->capacity = 0;
 	vec->type_size = 0;
-	vec->f = NULL;
+	vec->free = NULL;
 }

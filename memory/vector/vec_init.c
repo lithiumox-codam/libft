@@ -29,17 +29,6 @@ void	*vec_init(t_vector *vec, size_t capacity, size_t type_size,
 	vec->length = 0;
 	vec->capacity = capacity;
 	vec->type_size = type_size;
-	vec->f = free_data;
-	vec->find = vec_find;
-	vec->apply = vec_apply;
-	vec->pop = vec_pop;
-	vec->remove = vec_remove;
-	vec->insert = vec_insert;
-	vec->push = vec_push;
-	vec->resize = vec_resize;
-	vec->count = vec_count;
-	vec->get = vec_get;
-	vec->set = vec_set;
-	vec->replace = vec_replace;
+	vec->free = free_data;
 	return (vec);
 }

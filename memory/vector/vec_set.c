@@ -22,8 +22,8 @@
  */
 void	*vec_set(t_vector *vec, size_t index, void *data)
 {
-	if (vec->f)
-		vec->f(vec->data + index * vec->type_size);
+	if (vec->free)
+		vec->free(vec->data + index * vec->type_size);
 	ft_memcpy(vec->data + index * vec->type_size, data, vec->type_size);
 	return (vec->data + index * vec->type_size);
 }
