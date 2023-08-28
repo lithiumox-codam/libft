@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_vec_remove.c                                    :+:    :+:            */
+/*   vec_remove.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mdekker/jde-baai <team@codam.nl>             +#+                     */
 /*                                                   +#+                      */
@@ -19,16 +19,16 @@
  * @param i The index of the element to remove
  * @return void* The new vector
  */
-void	*ft_vec_remove(t_vector *v, size_t i)
+void	*vec_remove(t_vector *v, size_t i)
 {
-	if (i >= v->lenght)
+	if (i >= v->length)
 		return (NULL);
 	if (v->f)
 		v->f(v->data + i * v->type_size);
 	ft_memmove(
 		v->data + i * v->type_size,
 		v->data + (i + 1) * v->type_size,
-		(v->lenght - i - 1) * v->type_size);
-	v->lenght--;
+		(v->length - i - 1) * v->type_size);
+	v->length--;
 	return (v->data);
 }

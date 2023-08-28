@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_vec_find.c                                      :+:    :+:            */
+/*   vec_find.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
@@ -44,7 +44,7 @@ static bool	find_matches(t_vector *vec, bool (*cmp)(void *), t_found **found)
 
 	i = 0;
 	j = 0;
-	while (i < vec->lenght)
+	while (i < vec->length)
 	{
 		if (cmp(vec->data + i * vec->type_size) == true)
 		{
@@ -67,12 +67,12 @@ static bool	find_matches(t_vector *vec, bool (*cmp)(void *), t_found **found)
  * @return t_found** A list of found items with their index in the vector,
  * ending with NULL or NULL when failed
  */
-t_found	**ft_vec_find(t_vector *vec, bool (*cmp)(void *))
+t_found	**vec_find(t_vector *vec, bool (*cmp)(void *))
 {
 	size_t	count;
 	t_found	**found;
 
-	count = ft_vec_count(vec, cmp);
+	count = vec_count(vec, cmp);
 	if (count == 0)
 		return (NULL);
 	found = malloc(sizeof(t_found *) * (count + 1));

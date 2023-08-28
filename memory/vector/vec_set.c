@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_vec_set.c                                       :+:    :+:            */
+/*   vec_set.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
@@ -20,7 +20,7 @@
  * @param index The index of the element to set
  * @param data The data to set the element with
  */
-void	*ft_vec_set(t_vector *vec, size_t index, void *data)
+void	*vec_set(t_vector *vec, size_t index, void *data)
 {
 	if (vec->f)
 		vec->f(vec->data + index * vec->type_size);

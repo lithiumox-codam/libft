@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_vec_init.c                                      :+:    :+:            */
+/*   vec_init.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
@@ -20,26 +20,26 @@
  * @param type_size The size of the content of the vector
  * @return void * The initialized vector or NULL if malloc fails
  */
-void	*ft_vec_init(t_vector *vec, size_t capacity, size_t type_size,
+void	*vec_init(t_vector *vec, size_t capacity, size_t type_size,
 		void (*free_data)(void *))
 {
 	vec->data = malloc(capacity * type_size);
 	if (!vec->data)
 		return (NULL);
-	vec->lenght = 0;
+	vec->length = 0;
 	vec->capacity = capacity;
 	vec->type_size = type_size;
 	vec->f = free_data;
-	vec->find = ft_vec_find;
-	vec->apply = ft_vec_apply;
-	vec->pop = ft_vec_pop;
-	vec->remove = ft_vec_remove;
-	vec->insert = ft_vec_insert;
-	vec->push = ft_vec_push;
-	vec->resize = ft_vec_resize;
-	vec->count = ft_vec_count;
-	vec->get = ft_vec_get;
-	vec->set = ft_vec_set;
-	vec->replace = ft_vec_replace;
+	vec->find = vec_find;
+	vec->apply = vec_apply;
+	vec->pop = vec_pop;
+	vec->remove = vec_remove;
+	vec->insert = vec_insert;
+	vec->push = vec_push;
+	vec->resize = vec_resize;
+	vec->count = vec_count;
+	vec->get = vec_get;
+	vec->set = vec_set;
+	vec->replace = vec_replace;
 	return (vec);
 }

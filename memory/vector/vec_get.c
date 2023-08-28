@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_vec_replace.c                                   :+:    :+:            */
+/*   vec_get.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/07/21 13:09:13 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/28 23:07:13 by mdekker       ########   odam.nl         */
+/*   Created: 2023/07/15 22:33:02 by mdekker       #+#    #+#                 */
+/*   Updated: 2023/07/21 17:19:59 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
 /**
- * @brief Replaces one element in the vector with the provided data
+ * @brief Gets an element from the vector
  *
- * @param vec The vector to replace in
- * @param index The index of the element to replace
- * @param data The data to replace with
- *
- * @return void* The pointer to the replaced element or NULL if the
- * replacement failed
- *
- * !TODO add a function to replace multiple elements at once
+ * @param vec The vector to get from
+ * @param index The index of the element
+ * @return void* The element
  */
-void	*ft_vec_replace(t_vector *vec, size_t index, void *data)
+void	*vec_get(t_vector *vec, size_t index)
 {
-	if (!ft_vec_set(vec, index, data))
+	if (index < 0)
+		return (NULL);
+	if (index >= vec->length)
 		return (NULL);
 	return (vec->data + index * vec->type_size);
 }

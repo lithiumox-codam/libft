@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_vec_push.c                                      :+:    :+:            */
+/*   vec_push.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
@@ -19,13 +19,13 @@
  * @param data The data to push
  * @return bool true when succeeded, false when failed
  */
-bool	ft_vec_push(t_vector *vec, void *data)
+bool	vec_push(t_vector *vec, void *data)
 {
-	if (vec->lenght == vec->capacity)
-		if (ft_vec_resize(vec, vec->capacity * 2) == false)
+	if (vec->length == vec->capacity)
+		if (vec_resize(vec, vec->capacity * 2) == false)
 			return (false);
-	ft_memcpy(vec->data + vec->lenght * vec->type_size, data, vec->type_size);
-	vec->lenght++;
+	ft_memcpy(vec->data + vec->length * vec->type_size, data, vec->type_size);
+	vec->length++;
 	free(data);
 	return (true);
 }

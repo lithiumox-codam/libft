@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_vec_apply.c                                     :+:    :+:            */
+/*   vec_apply.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
@@ -18,12 +18,12 @@
  * @param vec The vector to apply the function to
  * @param f The function to apply
  */
-void	ft_vec_apply(t_vector *vec, void (*f)(void *))
+void	vec_apply(t_vector *vec, void (*f)(void *))
 {
 	size_t	i;
 
 	i = 0;
-	while (i < vec->lenght)
+	while (i < vec->length)
 	{
 		f(vec->data + i * vec->type_size);
 		i++;

@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_vec_get.c                                       :+:    :+:            */
+/*   vec_apply.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/07/15 22:33:02 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/21 17:19:59 by mdekker       ########   odam.nl         */
+/*   Created: 2023/07/17 23:48:40 by mdekker       #+#    #+#                 */
+/*   Updated: 2023/07/18 00:31:05 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
 /**
- * @brief Gets an element from the vector
+ * @brief Applies a function to all elements in the vector
  *
- * @param vec The vector to get from
- * @param index The index of the element
- * @return void* The element
+ * @param vec The vector to apply the function to
+ * @param f The function to apply
  */
-void	*ft_vec_get(t_vector *vec, size_t index)
+void	vec_apply(t_vector *vec, void (*f)(void *))
 {
-	if (index < 0)
-		return (NULL);
-	if (index >= vec->lenght)
-		return (NULL);
-	return (vec->data + index * vec->type_size);
+	size_t	i;
+
+	i = 0;
+	while (i < vec->length)
+	{
+		f(vec->data + i * vec->type_size);
+		i++;
+	}
 }

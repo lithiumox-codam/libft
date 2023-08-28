@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_vec_resize.c                                    :+:    :+:            */
+/*   vec_resize.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
@@ -21,19 +21,19 @@
  *
  *
  * @param vec The vector to resize
- * @param new_lenght The new size of the vector
+ * @param new_length The new size of the vector
  * @return bool true if the resize was successful, false if not
  */
-bool	ft_vec_resize(t_vector *vec, size_t new_lenght)
+bool	vec_resize(t_vector *vec, size_t new_length)
 {
 	void	*new;
 
-	if (new_lenght == 0 || new_lenght < vec->lenght)
+	if (new_length == 0 || new_length < vec->length)
 		return (false);
-	new = ft_realloc(vec->data, new_lenght * vec->type_size);
+	new = ft_realloc(vec->data, new_length * vec->type_size);
 	if (!new)
 		return (false);
 	vec->data = new;
-	vec->capacity = new_lenght;
+	vec->capacity = new_length;
 	return (true);
 }

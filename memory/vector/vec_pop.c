@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_vec_pop.c                                       :+:    :+:            */
+/*   vec_pop.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
@@ -19,19 +19,19 @@
  * @return void* The popped element
  */
 
-void	*ft_vec_pop(t_vector *vec)
+void	*vec_pop(t_vector *vec)
 {
 	void	*data;
 
-	if (vec->lenght == 0)
+	if (vec->length == 0)
 		return (NULL);
-	data = ft_calloc(1, vec->type_size * vec->lenght);
+	data = ft_calloc(1, vec->type_size * vec->length);
 	if (!data)
 		return (NULL);
 	ft_memcpy(
 		data,
-		vec->data + (vec->lenght - 1) * vec->type_size,
+		vec->data + (vec->length - 1) * vec->type_size,
 		vec->type_size);
-	vec->lenght--;
+	vec->length--;
 	return (data);
 }

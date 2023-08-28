@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_vec_insert.c                                    :+:    :+:            */
+/*   vec_insert.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
@@ -21,18 +21,18 @@
  * @return bool true when succeeded, false when failed
  *
  */
-bool	ft_vec_insert(t_vector *v, size_t i, void *data)
+bool	vec_insert(t_vector *v, size_t i, void *data)
 {
-	if (i > v->lenght)
+	if (i > v->length)
 		return (false);
-	if (v->lenght == v->capacity)
-		if (ft_vec_resize(v, v->capacity * 2) == false)
+	if (v->length == v->capacity)
+		if (vec_resize(v, v->capacity * 2) == false)
 			return (false);
 	ft_memmove(
 		v->data + (i + 1) * v->type_size,
 		v->data + i * v->type_size,
-		(v->lenght - i) * v->type_size);
+		(v->length - i) * v->type_size);
 	ft_memcpy(v->data + i * v->type_size, data, v->type_size);
-	v->lenght++;
+	v->length++;
 	return (true);
 }

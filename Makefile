@@ -6,7 +6,7 @@
 #    By: mdekker <mdekker@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/06/14 23:09:11 by mdekker       #+#    #+#                  #
-#    Updated: 2023/07/22 16:37:34 by mdekker       ########   odam.nl          #
+#    Updated: 2023/08/28 11:12:53 by mdekker       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,11 +31,11 @@ SRC = characters/ft_isalpha.c characters/ft_isdigit.c characters/ft_isalnum.c ch
 	io/ft_putchar_fd.c io/ft_putnbr_fd.c strings/ft_itoa.c strings/ft_striteri.c strings/ft_substr.c \
 	strings/ft_strjoin.c strings/ft_strmapi.c strings/ft_strtrim.c strings/ft_split.c strings/ft_atod.c \
 	utils/math.c utils/string.c strings/ft_atol.c strings/ft_strcat.c strings/ft_strcpy.c \
-	strings/ft_strcmp.c memory/ft_realloc.c memory/vector/ft_vec_init.c memory/vector/ft_vec_push.c \
-	memory/vector/ft_vec_pop.c memory/vector/ft_vec_get.c memory/vector/ft_vec_free.c \
-	memory/vector/ft_vec_insert.c memory/vector/ft_vec_remove.c memory/vector/ft_vec_find.c \
-	memory/vector/ft_vec_apply.c memory/vector/ft_vec_resize.c \
-	memory/vector/ft_vec_count.c memory/vector/ft_vec_replace.c memory/vector/ft_vec_set.c \
+	strings/ft_strcmp.c memory/ft_realloc.c memory/vector/vec_init.c memory/vector/vec_push.c \
+	memory/vector/vec_pop.c memory/vector/vec_get.c memory/vector/vec_free.c \
+	memory/vector/vec_insert.c memory/vector/vec_remove.c memory/vector/vec_find.c \
+	memory/vector/vec_apply.c memory/vector/vec_resize.c \
+	memory/vector/vec_count.c memory/vector/vec_replace.c memory/vector/vec_set.c \
 
 PRINTF = printf/build/put.o printf/build/printf.o printf/build/utils.o
 OBJECTS = $(addprefix $(BUILDDIR)/, $(SRC:.c=.o))
