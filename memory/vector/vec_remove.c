@@ -23,8 +23,8 @@ void	*vec_remove(t_vector *v, size_t i)
 {
 	if (i >= v->length)
 		return (NULL);
-	if (v->f)
-		v->f(v->data + i * v->type_size);
+	if (v->free)
+		v->free(v->data + i * v->type_size);
 	ft_memmove(
 		v->data + i * v->type_size,
 		v->data + (i + 1) * v->type_size,
