@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:20:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/09/10 20:13:38 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/09/10 20:17:47 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,7 @@ struct					s_found
  * @param length The current length of the vector
  * @param type_size The size of the content of the vector
  * @param capacity The current capacity of the vector
- * @param f The function to free the data of the vector
- * @param find The function to find data in the vector
- * @param apply The function to apply a function to all data in the vector
- * @param pop The function to pop the last element of the vector
- * @param remove The function to remove an element from the vector
- * @param insert The function to insert an element in the vector
- * @param push The function to push an element to the vector
- * @param resize The function to resize the vector
- * @param count The function to count the amount of occurences of a value
- * @param get The function to get an element from the vector
- * @return void
- *
+ * @param free The function to free the data of the vector
  */
 typedef struct s_vector
 {
