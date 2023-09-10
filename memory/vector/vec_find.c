@@ -21,6 +21,7 @@ static t_found	*create_struct(void *data, size_t index)
 		return (NULL);
 	found->item = data;
 	found->index = index;
+	found->next = NULL;
 	return (found);
 }
 
@@ -51,6 +52,8 @@ static bool	find_matches(t_vector *vec, bool (*cmp)(void *), t_found **found)
 			found[j] = create_struct(vec->data + i * vec->type_size, i);
 			if (!found[j])
 				return (emergency_free(found, j), false);
+			if (j > 0)
+				found[j - 1]->next = found[j];
 			j++;
 		}
 		i++;
