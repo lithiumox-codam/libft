@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:20:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/09/09 12:47:41 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/09/10 20:13:38 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ struct					s_found
 {
 	void				*item;
 	size_t				index;
-	t_found				*next;
 };
 
 /**
@@ -68,7 +67,8 @@ void					*vec_get(t_vector *vec, size_t index);
 void					*vec_set(t_vector *vec, size_t index, void *data);
 void					*vec_pop(t_vector *vec);
 void					*vec_remove(t_vector *v, size_t i);
-t_found					**vec_find(t_vector *vec, bool (*cmp)(void *));
+t_vector				*vec_find(t_vector *vec, bool (*cmp)(void *));
+
 void					*vec_replace(t_vector *vec, size_t index, void *data);
 void					vec_apply(t_vector *vec, void (*f)(void *));
 void					vec_free(t_vector *vec);
