@@ -6,7 +6,7 @@
 #    By: mdekker <mdekker@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/06/14 23:09:11 by mdekker       #+#    #+#                  #
-#    Updated: 2023/08/28 11:12:53 by mdekker       ########   odam.nl          #
+#    Updated: 2023/09/13 21:33:17 by mdekker       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRC = characters/ft_isalpha.c characters/ft_isdigit.c characters/ft_isalnum.c ch
 	memory/vector/vec_apply.c memory/vector/vec_resize.c \
 	memory/vector/vec_count.c memory/vector/vec_replace.c memory/vector/vec_set.c \
 
-PRINTF = printf/build/put.o printf/build/printf.o printf/build/utils.o
+# PRINTF = printf/build/put.o printf/build/printf.o printf/build/utils.o
 OBJECTS = $(addprefix $(BUILDDIR)/, $(SRC:.c=.o))
 FOLDERS = $(dir $(SRC))
 SPLIT = $(FOLDERS:/=)
