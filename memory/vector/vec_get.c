@@ -17,12 +17,10 @@
  *
  * @param vec The vector to get from
  * @param index The index of the element
- * @return void* The element
+ * @return void* The element or NULL if the index is out of bounds
  */
 void	*vec_get(t_vector *vec, size_t index)
 {
-	if (index < 0)
-		return (NULL);
 	if (index >= vec->length)
 		return (NULL);
 	return (vec->data + index * vec->type_size);

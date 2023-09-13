@@ -16,7 +16,7 @@ static t_found	*create_found_item(void *item, size_t index)
 {
 	t_found	*found_item;
 
-	found_item = (t_found *)malloc(sizeof(t_found));
+	found_item = malloc(sizeof(t_found));
 	if (!found_item)
 		return (NULL);
 	found_item->item = item;
@@ -37,21 +37,12 @@ static bool	find_matches(t_vector *vec, bool (*cmp)(void *), t_vector *found)
 			found_item = create_found_item(vec->data + i * vec->type_size, i);
 			if (!found_item)
 				return (false);
-			vec_push(found, found_item);
+			if (!vec_push(found, found_item))
+				return (vec_free(found), false);
 		}
 		i++;
 	}
 	return (true);
-}
-
-/**
- * @brief The function to free the found data struct not the data itself
- *
- * @param item The found data struct
- */
-static void	free_found(void *item)
-{
-	free(item);
 }
 
 /**
@@ -69,9 +60,10 @@ t_vector	*vec_find(t_vector *vec, bool (*cmp)(void *))
 	count = vec_count(vec, cmp);
 	if (count == 0)
 		return (NULL);
-	found = vec_init(malloc(sizeof(t_vector)), count, sizeof(t_found),
-			free_found);
+	found = malloc(sizeof(t_vector));
 	if (!found)
+		return (NULL);
+	if (!vec_init(found, count, sizeof(t_found), NULL))
 		return (NULL);
 	if (!find_matches(vec, cmp, found))
 		return (vec_free(found), NULL);

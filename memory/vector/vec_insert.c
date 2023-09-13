@@ -33,6 +33,7 @@ bool	vec_insert(t_vector *v, size_t i, void *data)
 		v->data + i * v->type_size,
 		(v->length - i) * v->type_size);
 	ft_memcpy(v->data + i * v->type_size, data, v->type_size);
+	free(data);
 	v->length++;
 	return (true);
 }
