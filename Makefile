@@ -6,7 +6,7 @@
 #    By: mdekker <mdekker@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/06/14 23:09:11 by mdekker       #+#    #+#                  #
-#    Updated: 2023/09/13 21:34:05 by mdekker       ########   odam.nl          #
+#    Updated: 2023/09/13 21:37:48 by mdekker       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,13 +47,11 @@ all: submodules $(NAME)
 
 clean:
 	@echo "🧨 Cleaning build folder..."
-	@make clean -C printf > /dev/null
 	@rm -rf $(BUILDDIR)
 	@echo "✅ Done!"
 
 fclean: clean
 	@echo "🧨 Force cleaning libft..."
-	@make fclean -C printf > /dev/null
 	@rm -f $(NAME)
 	@echo "✅ Done!"
 
