@@ -6,7 +6,7 @@
 #    By: mdekker <mdekker@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/06/14 23:09:11 by mdekker       #+#    #+#                  #
-#    Updated: 2023/09/13 21:33:17 by mdekker       ########   odam.nl          #
+#    Updated: 2023/09/13 21:34:05 by mdekker       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,9 +68,9 @@ $(PRINTF):
 	@echo "📥 Compiling printf..."
 	@make -C printf > /dev/null
 
-$(NAME): $(OBJECTS) $(PRINTF)
+$(NAME): $(OBJECTS)
 	@echo "⚙️ Compiling..."
-	@ar rc $(NAME) $(OBJECTS) $(PRINTF)
+	@ar rc $(NAME) $(OBJECTS)
 	@echo "✅ Done!"
 
 submodules:
