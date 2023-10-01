@@ -12,6 +12,24 @@
 
 #include <libft.h>
 
+void	print_t_found(void *item, size_t index)
+{
+	t_found	*found;
+
+	found = (t_found *)item;
+	if (index == 0)
+		printf("\033[1;33m├── Found Vector 👇\n");
+	else
+		printf("\033[1;31m●\n");
+	printf("\033[1;33m│\n");
+	printf("├── Found %zu:\n", index);
+	printf("│   ├── Item: %p\n", found->item);
+	printf("│   ├── Index: %zu\n", found->index);
+	printf("│   └── Adress: %p\n", found);
+	printf("\033[1;33m│\n");
+	printf("\033[0m");
+}
+
 static t_found	*create_found_item(void *item, size_t index)
 {
 	t_found	*found_item;
