@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <libft.h>
+#include <stdio.h>
 
 void	print_t_found(void *item, size_t index)
 {

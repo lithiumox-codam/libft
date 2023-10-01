@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:20:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/10/01 16:46:29 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/10/01 16:47:35 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define VECTOR_H
 
 # include <stdbool.h>
-# include <stdio.h>
 # include <stdlib.h>
 
 /**
