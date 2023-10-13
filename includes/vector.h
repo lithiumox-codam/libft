@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:20:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/10/01 16:47:35 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/10/13 23:49:20 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ bool					vec_push(t_vector *vec, void *data);
 bool					vec_resize(t_vector *vec, size_t new_size);
 size_t					vec_count(t_vector *vec, bool (*f)(void *));
 
-/* t_found related */
+/*
+**	Extra functions
+*/
 void					print_t_found(void *item, size_t index);
-
 #endif
