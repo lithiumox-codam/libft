@@ -24,7 +24,9 @@ bool	vec_push(t_vector *vec, void *data)
 	if (vec->length == vec->capacity)
 		if (vec_resize(vec, vec->capacity * 2) == false)
 			return (false);
-	ft_memcpy(vec->data + vec->length * vec->type_size, data, vec->type_size);
+	if (!ft_memcpy(vec->data + vec->length * vec->type_size, data,
+			vec->type_size))
+		return (false);
 	vec->length++;
 	free(data);
 	return (true);
