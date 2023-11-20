@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_memcpy.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
+/*   By: mdekker/jde-baai <team@codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/06 16:07:17 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/18 00:16:53 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/11/20 20:20:01 by mdekker/jde   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 
 	destination = dst;
 	source = src;
-	if (dst == NULL && src == NULL)
+	if (dst == NULL || src == NULL)
 		return (NULL);
 	while (n-- > 0)
 		*(destination++) = *(source++);
