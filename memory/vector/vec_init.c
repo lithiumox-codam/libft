@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_vec_init.c                                      :+:    :+:            */
+/*   vec_init.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:19:09 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/19 10:51:49 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/12/14 16:56:58 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@
  * @param f The function to free the data in the vector or NULL when not needed
  * @return void * The initialized vector or NULL if malloc fails
  */
-void	*ft_vec_init(t_vector *vec, size_t capacity, size_t type_size,
-		void (*free)(void *))
+void	*vec_init(t_vector *vec, size_t capacity, size_t type_size,
+		void (*free_data)(void *))
 {
 	vec->data = malloc(capacity * type_size);
 	if (!vec->data)
 		return (NULL);
-	vec->lenght = 0;
+	vec->length = 0;
 	vec->capacity = capacity;
 	vec->type_size = type_size;
-	vec->free_func = free;
+	vec->free = free_data;
 	return (vec);
 }

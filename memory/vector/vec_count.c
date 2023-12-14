@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_vec_apply.c                                     :+:    :+:            */
+/*   vec_count.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/07/17 23:48:40 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/18 00:31:05 by mdekker       ########   odam.nl         */
+/*   Created: 2023/07/20 23:10:32 by mdekker       #+#    #+#                 */
+/*   Updated: 2023/07/24 09:47:29 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
 /**
- * @brief Applies a function to all elements in the vector
+ * @brief Counts the amount of occurences in a vector using a function provided
+ * by the user.
  *
- * @param vec The vector to apply the function to
- * @param f The function to apply
+ * @param vec The vector to count in
+ * @param f The function to use to compare the values
+ * @param value The value to compare to
+ * @return size_t The amount of occurences
  */
-void	ft_vec_apply(t_vector *vec, void (*f)(void *))
+size_t	vec_count(t_vector *vec, bool (*f)(void *))
 {
 	size_t	i;
+	size_t	count;
 
 	i = 0;
-	while (i < vec->lenght)
+	count = 0;
+	while (i < vec->length)
 	{
-		f(vec->data + i * vec->type_size);
+		if (f(vec->data + i * vec->type_size))
+			count++;
 		i++;
 	}
+	return (count);
 }

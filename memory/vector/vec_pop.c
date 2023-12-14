@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strdup.c                                        :+:    :+:            */
+/*   vec_pop.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/11/03 15:09:04 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/18 00:16:12 by mdekker       ########   odam.nl         */
+/*   Created: 2023/07/15 22:31:31 by mdekker       #+#    #+#                 */
+/*   Updated: 2023/07/18 21:17:56 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
 /**
- * @brief Duplicates a string
+ * @brief Pops the last element of the vector
  *
- * @param s1 The string to duplicate
- * @return char* A pointer to the new string, NULL if malloc fails
+ * @param vec The vector to pop from
+ * @return void* The popped element
  */
-char	*ft_strdup(const char *s1)
-{
-	char	*ptr;
-	int		len;
 
-	if (s1 == NULL)
+void	*vec_pop(t_vector *vec)
+{
+	void	*data;
+
+	if (vec->length == 0)
 		return (NULL);
-	len = ft_strlen(s1) + 1;
-	ptr = malloc(len);
-	if (ptr == NULL)
+	data = ft_calloc(1, vec->type_size * vec->length);
+	if (!data)
 		return (NULL);
-	else
-		ft_strlcpy(ptr, s1, len);
-	return (ptr);
+	ft_memcpy(
+		data,
+		vec->data + (vec->length - 1) * vec->type_size,
+		vec->type_size);
+	vec->length--;
+	return (data);
 }

@@ -1,16 +1,9 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: mdekker <mdekker@student.codam.nl>           +#+                      #
-#                                                    +#+                       #
-#    Created: 2023/06/14 23:09:11 by mdekker       #+#    #+#                  #
-#    Updated: 2023/07/18 23:38:35 by mdekker       ########   odam.nl          #
-#                                                                              #
-# **************************************************************************** #
-
 .PHONY: all clean fclean re run test submodules
+
+DEBUG ?= 0
+ifeq ($(DEBUG), 1)
+	CFLAGS += -g
+endif
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -26,12 +19,14 @@ SRC = characters/ft_isalpha.c characters/ft_isdigit.c characters/ft_isalnum.c ch
 	io/ft_putchar_fd.c io/ft_putnbr_fd.c strings/ft_itoa.c strings/ft_striteri.c strings/ft_substr.c \
 	strings/ft_strjoin.c strings/ft_strmapi.c strings/ft_strtrim.c strings/ft_split.c strings/ft_atod.c \
 	utils/math.c utils/string.c strings/ft_atol.c strings/ft_strcat.c strings/ft_strcpy.c \
-	strings/ft_strcmp.c memory/ft_realloc.c memory/vector/ft_vec_init.c memory/vector/ft_vec_push.c \
-	memory/vector/ft_vec_pop.c memory/vector/ft_vec_get.c memory/vector/ft_vec_free.c \
-	memory/vector/ft_vec_insert.c memory/vector/ft_vec_remove.c memory/vector/ft_vec_find.c \
-	memory/vector/ft_vec_apply.c memory/vector/ft_vec_resize.c
+	strings/ft_strcmp.c memory/ft_realloc.c memory/vector/vec_init.c memory/vector/vec_push.c \
+	memory/vector/vec_pop.c memory/vector/vec_get.c memory/vector/vec_free.c \
+	memory/vector/vec_insert.c memory/vector/vec_remove.c memory/vector/vec_find.c \
+	memory/vector/vec_apply.c memory/vector/vec_resize.c \
+	memory/vector/vec_count.c memory/vector/vec_replace.c memory/vector/vec_set.c \
+	memory/vector/vec_find_f.c
 
-PRINTF = printf/build/put.o printf/build/printf.o printf/build/utils.o
+# PRINTF = printf/build/put.o printf/build/printf.o printf/build/utils.o
 OBJECTS = $(addprefix $(BUILDDIR)/, $(SRC:.c=.o))
 FOLDERS = $(dir $(SRC))
 SPLIT = $(FOLDERS:/=)
@@ -41,13 +36,11 @@ all: submodules $(NAME)
 
 clean:
 	@echo "🧨 Cleaning build folder..."
-	@make clean -C printf > /dev/null
 	@rm -rf $(BUILDDIR)
 	@echo "✅ Done!"
 
 fclean: clean
 	@echo "🧨 Force cleaning libft..."
-	@make fclean -C printf > /dev/null
 	@rm -f $(NAME)
 	@echo "✅ Done!"
 
@@ -62,9 +55,9 @@ $(PRINTF):
 	@echo "📥 Compiling printf..."
 	@make -C printf > /dev/null
 
-$(NAME): $(OBJECTS) $(PRINTF)
+$(NAME): $(OBJECTS)
 	@echo "⚙️ Compiling..."
-	@ar rc $(NAME) $(OBJECTS) $(PRINTF)
+	@ar rc $(NAME) $(OBJECTS)
 	@echo "✅ Done!"
 
 submodules:

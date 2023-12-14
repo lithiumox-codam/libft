@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_vec_pop.c                                       :+:    :+:            */
+/*   vec_free.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/07/15 22:31:31 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/18 21:17:56 by mdekker       ########   odam.nl         */
+/*   Created: 2023/07/15 22:34:11 by mdekker       #+#    #+#                 */
+/*   Updated: 2023/12/14 16:57:04 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
 /**
- * @brief Pops the last element of the vector
+ * @brief Frees a vector and the data in it
  *
- * @param vec The vector to pop from
- * @return void* The popped element
+ * @param vec The vector to free
  */
-
-void	*ft_vec_pop(t_vector *vec)
+void	vec_free(t_vector *vec)
 {
-	void	*data;
+	size_t	i;
 
-	if (vec->lenght == 0)
-		return (NULL);
-	data = ft_calloc(1, vec->type_size * vec->lenght);
-	if (!data)
-		return (NULL);
-	ft_memcpy(
-		data,
-		vec->data + (vec->lenght - 1) * vec->type_size,
-		vec->type_size);
-	vec->lenght--;
-	return (data);
+	i = 0;
+	if (vec->free)
+	{
+		while (i < vec->length)
+		{
+			vec->free(vec->data + i * vec->type_size);
+			i++;
+		}
+	}
+	free(vec->data);
+	vec->data = NULL;
+	vec->length = 0;
+	vec->capacity = 0;
+	vec->type_size = 0;
+	vec->free = NULL;
 }

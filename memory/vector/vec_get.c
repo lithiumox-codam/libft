@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strdup.c                                        :+:    :+:            */
+/*   vec_get.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/11/03 15:09:04 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/18 00:16:12 by mdekker       ########   odam.nl         */
+/*   Created: 2023/07/15 22:33:02 by mdekker       #+#    #+#                 */
+/*   Updated: 2023/07/21 17:19:59 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
 /**
- * @brief Duplicates a string
+ * @brief Gets an element from the vector
  *
- * @param s1 The string to duplicate
- * @return char* A pointer to the new string, NULL if malloc fails
+ * @param vec The vector to get from
+ * @param index The index of the element
+ * @return void* The element or NULL if the index is out of bounds
  */
-char	*ft_strdup(const char *s1)
+void	*vec_get(t_vector *vec, size_t index)
 {
-	char	*ptr;
-	int		len;
-
-	if (s1 == NULL)
+	if (index >= vec->length)
 		return (NULL);
-	len = ft_strlen(s1) + 1;
-	ptr = malloc(len);
-	if (ptr == NULL)
-		return (NULL);
-	else
-		ft_strlcpy(ptr, s1, len);
-	return (ptr);
+	return (vec->data + index * vec->type_size);
 }
