@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/21 11:59:35 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/11/23 15:28:17 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/12/14 17:33:55 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <vector.h>
+# include <lists.h>
 
 /*
 ** Characters

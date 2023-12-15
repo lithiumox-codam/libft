@@ -24,7 +24,10 @@ SRC = characters/ft_isalpha.c characters/ft_isdigit.c characters/ft_isalnum.c ch
 	memory/vector/vec_insert.c memory/vector/vec_remove.c memory/vector/vec_find.c \
 	memory/vector/vec_apply.c memory/vector/vec_resize.c \
 	memory/vector/vec_count.c memory/vector/vec_replace.c memory/vector/vec_set.c \
-	memory/vector/vec_find_f.c
+	memory/vector/vec_find_f.c memory/lists/list_new.c memory/lists/list_add_back.c \
+	memory/lists/list_add_front.c memory/lists/list_free.c memory/lists/list_size.c \
+	memory/lists/list_iter.c memory/lists/list_map.c memory/lists/list_last.c \
+
 
 # PRINTF = printf/build/put.o printf/build/printf.o printf/build/utils.o
 OBJECTS = $(addprefix $(BUILDDIR)/, $(SRC:.c=.o))
@@ -44,27 +47,17 @@ fclean: clean
 	@rm -f $(NAME)
 	@echo "✅ Done!"
 
-$(BUILDDIR)/%.o: %.c | $(BUILDDIR)
+$(BUILDDIR)/%.o: %.c includes/libft.h includes/lists.h includes/vector.h | $(BUILDDIR)
 	@mkdir -p $(CAT)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(BUILDDIR):
 	@mkdir -p $(BUILDDIR)
 
-$(PRINTF):
-	@echo "📥 Compiling printf..."
-	@make -C printf > /dev/null
-
 $(NAME): $(OBJECTS)
 	@echo "⚙️ Compiling..."
 	@ar rc $(NAME) $(OBJECTS)
 	@echo "✅ Done!"
-
-submodules:
-	@echo "📥 Updating submodules..."
-	@git submodule sync > /dev/null
-	@git submodule update --init --recursive > /dev/null
-	@echo "✅ Submodules updated!"
 
 norm:
 	@echo "🧐 Norm-i-netting..."
