@@ -27,6 +27,7 @@ SRC = characters/ft_isalpha.c characters/ft_isdigit.c characters/ft_isalnum.c ch
 	memory/vector/vec_find_f.c memory/lists/list_new.c memory/lists/list_add_back.c \
 	memory/lists/list_add_front.c memory/lists/list_free.c memory/lists/list_size.c \
 	memory/lists/list_iter.c memory/lists/list_map.c memory/lists/list_last.c \
+	strings/get_next_line.c memory/vector/vec_char_push.c strings/ft_lstrchr.c \
 
 
 # PRINTF = printf/build/put.o printf/build/printf.o printf/build/utils.o

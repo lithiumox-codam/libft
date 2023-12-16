@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:20:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/12/14 16:59:10 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/12/16 23:48:05 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,5 @@ void					*vec_find_f(t_vector *v, bool (*f)(void *, void *),
 **	Extra functions
 */
 void					print_t_found(void *item, size_t index);
+bool					vec_char_push(t_vector *vec, char c);
 #endif
