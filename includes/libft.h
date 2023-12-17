@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/21 11:59:35 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/12/17 16:40:43 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/12/17 17:49:41 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,13 @@ int				ft_intlen(int n);
 ** Get Next Line
 */
 # define BUFFER_SIZE 32
-# define VEC_SIZE 32
 
 char			*get_next_line(int fd);
 
 typedef struct s_gnl
 {
 	t_vector	*line;
-	char		*buff;
+	char		buff[BUFFER_SIZE];
 	int			length;
 }				t_gnl;
 
