@@ -5,7 +5,7 @@ ifeq ($(DEBUG), 1)
 	CFLAGS += -g
 endif
 
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
 INCLUDES = -I $(CURDIR)/includes
