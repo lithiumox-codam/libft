@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/21 11:59:35 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/12/17 00:02:56 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/12/17 16:40:43 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 int				checkchar(char c, char *comparison);
 int				ft_strcmp(const char *s1, const char *s2);
-char			*ft_lstrchr(const char *s, int c, size_t len);
+char			*ft_lstrchr(const char *s, int c, int len);
 
 /*
 ** Additional String Functions
@@ -101,8 +101,17 @@ char			*get_next_line(int fd);
 typedef struct s_gnl
 {
 	t_vector	*line;
-	char		*buffer;
+	char		*buff;
 	int			length;
 }				t_gnl;
+
+typedef struct s_concat
+{
+	size_t		size;
+	char		*new;
+	int			i;
+	int			j;
+	int			found;
+}				t_concat;
 
 #endif

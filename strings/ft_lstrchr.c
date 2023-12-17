@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/16 23:49:31 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/12/16 23:50:33 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/12/17 16:38:42 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  * @param len Length of the string to search
  * @return char* Pointer to the first occurence of c in s, NULL if not found
  */
-char	*ft_lstrchr(const char *s, int c, size_t len)
+char	*ft_lstrchr(const char *s, int c, int len)
 {
 	while (*s && len > 0)
 	{

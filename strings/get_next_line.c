@@ -6,55 +6,72 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/16 23:39:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/12/17 00:03:39 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/12/17 16:40:58 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
 /**
- * @brief Use the vector lib to concat the line
+ * @brief A scuffed memcpy that copies the remaining buffer to the beginning.
  *
- * @param line
- * @param buff
- * @param bufflen
- * @return char*
+ * @param x The struct containing the concat variables.
+ * @param bufflen The length of the buffer.
+ * @param buff The buffer to copy from.
  */
-static bool	concat(t_gnl *buff)
+static void	ft_copy_magic(t_concat *x, int bufflen, char *buff)
 {
-	int	i;
-
-	i = 0;
-	while (i < buff->length && buff->buffer[i] != '\n')
+	while (x->j < bufflen && buff[x->j] != '\0' && !x->found)
 	{
-		if (!vec_char_push(&buff->line, buff->buffer[i]))
-			return (false);
-		i++;
+		x->new[x->i] = buff[x->j];
+		if (x->new[x->i] == '\n')
+			x->found = 1;
+		x->i++;
+		x->j++;
 	}
-	return (true);
 }
 
 /**
- * @brief Gets the line from the vector and returns it as a string.
+ * @brief A function to elongate the line with the buffer.
  *
- * @param buffer The vector to get the line from.
- * @return char* The line as a string.
+ * @param line The line to elongate.
+ * @param buff The buffer to elongate the line with.
+ * @param bufflen The length of the buffer.
+ * @return char* The new line.
  */
-static char	*return_line(t_gnl *buffer)
+static char	*concat(char *line, char *buff, int bufflen)
 {
-	if (vec_resize(&buffer->line, buffer->line.length + 1))
-		return (free(&buffer->line.data), NULL);
-	if (vec_char_push(&buffer->line, '\0'))
-		return (free(&buffer->line.data), NULL);
-	return ((char *)buffer->line.data);
+	t_concat	v;
+
+	v.i = 0;
+	v.found = 0;
+	v.j = 0;
+	if (!bufflen)
+		bufflen = 1;
+	v.size = bufflen + 1;
+	if (line != NULL)
+		v.size += ft_strlen(line);
+	v.new = ft_calloc(v.size, sizeof(char));
+	if (!v.new)
+		return (free(line), NULL);
+	while (line != NULL && line[v.i])
+	{
+		v.new[v.i] = line[v.i];
+		v.i++;
+	}
+	ft_copy_magic(&v, bufflen, buff);
+	v.new[v.i] = '\0';
+	return (free(line), v.new);
 }
 
 /**
- * @brief Get the remaining buff object by copying the remaining buffer to the
- * beginning of the buffer. This is done so that the next time the function is
- * called, the buffer will be read from the beginning.
+ * @brief Get the remaining buffer if a newline is found.
  *
- * @param buffer The buffer to get the remaining buffer from.
+ * @note This function is only called when a newline is found in the buffer. And
+ * the remaining buffer is put in the beginning of the buffer. This is done so
+ * the next call to get_next_line it will read the remaining buffer first.
+ *
+ * @param buffer
  */
 static void	get_remaining_buff(t_gnl *buffer)
 {
@@ -62,14 +79,14 @@ static void	get_remaining_buff(t_gnl *buffer)
 	int	j;
 
 	i = 0;
-	while (i < buffer->length && buffer->buffer[i] != '\n')
+	while (i < buffer->length && buffer->buff[i] != '\n')
 		i++;
 	if (i < buffer->length)
 		i++;
 	j = 0;
 	while (i < buffer->length)
 	{
-		buffer->buffer[j] = buffer->buffer[i];
+		buffer->buff[j] = buffer->buff[i];
 		i++;
 		j++;
 	}
@@ -77,71 +94,67 @@ static void	get_remaining_buff(t_gnl *buffer)
 }
 
 /**
- * @brief Reads the line from the file descriptor.
+ * @brief A wrapper for read() so it modifies the variables in the struct.
  *
- * @param buffer The buffer to read into.
+ * @param buffer The struct containing the buffer.
+ * @param line The line read from the file descriptor.
  * @param fd The file descriptor to read from.
- * @return true The line was read.
- * @return false There was an error.
+ * @return char* The line read from the file descriptor.
  */
-static bool	read_line(t_gnl *buffer, int fd)
+static char	*read_line(t_gnl *buffer, char *line, int fd)
 {
-	bool	found;
+	int	found;
+	int	bufflen;
 
-	found = false;
-	while (buffer->length > 0 && !found)
+	bufflen = 1;
+	found = 0;
+	while (bufflen > 0 && !found)
 	{
-		buffer->length = read(fd, buffer->buffer, BUFFER_SIZE);
-		if (buffer->length == 0)
+		bufflen = read(fd, buffer->buff, BUFFER_SIZE);
+		buffer->length = bufflen;
+		if (bufflen == 0)
 			break ;
-		if (buffer->length < 0)
+		if (bufflen < 0)
 		{
-			free(buffer->line.data);
-			return (false);
+			free(line);
+			return (NULL);
 		}
-		if (!concat(buffer))
-			return (false);
-		if (ft_lstrchr(buffer->buffer, '\n', buffer->length))
-			found = true;
+		line = concat(line, buffer->buff, bufflen);
+		if (ft_lstrchr(buffer->buff, '\n', buffer->length))
+			found = 1;
 		get_remaining_buff(buffer);
 	}
-	return (true);
+	return (line);
 }
 
 /**
- * @brief get_next_line function that reads from a file descriptor and
- * returns the next line. It uses a static buffer to store the remaining buffer
- * and a vector to store the line. The vector is used to store the line because
- * it can be resized easily.
+ * @brief get_next_line reads a line from a file descriptor and returns it.
  *
  * @param fd The file descriptor to read from.
- * @return char* The next line. Or NULL if there was an error.
+ * @return char* The line read from the file descriptor.
  */
 char	*get_next_line(int fd)
 {
 	static t_gnl	buffer;
+	char			*line;
 
-	if (!vec_init(&buffer.line, VEC_SIZE, sizeof(char), NULL))
-		return (NULL);
+	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (buffer.length > 0)
 	{
-		if (ft_lstrchr(buffer.buffer, '\n', buffer.length))
+		if (ft_lstrchr(buffer.buff, '\n', buffer.length))
 		{
-			if (!concat(&buffer))
-				return (free(&buffer.line.data), NULL);
+			line = concat(line, buffer.buff, buffer.length);
 			get_remaining_buff(&buffer);
-			return (return_line(&buffer));
+			return (line);
 		}
 		else
 		{
-			if (!concat(&buffer))
-				return (free(buffer->line.data), NULL);
+			line = concat(line, buffer.buff, buffer.length);
 			buffer.length = 0;
 		}
 	}
-	if (!read_line(&buffer, fd))
-		return (free(&buffer->line.data), NULL);
-	return (return_line(&buffer));
+	line = read_line(&buffer, line, fd);
+	return (line);
 }
