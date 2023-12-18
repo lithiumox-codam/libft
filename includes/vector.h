@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:20:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/12/16 23:48:05 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/12/18 14:14:05 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void					vec_apply(t_vector *vec, void (*f)(void *));
 void					vec_free(t_vector *vec);
 bool					vec_insert(t_vector *v, size_t i, void *data);
 bool					vec_push(t_vector *vec, void *data);
+bool					vec_push_ptr(t_vector *vec, void *data);
 bool					vec_resize(t_vector *vec, size_t new_size);
 size_t					vec_count(t_vector *vec, bool (*f)(void *));
 void					*vec_find_f(t_vector *v, bool (*f)(void *, void *),
