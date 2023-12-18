@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/15 22:26:05 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/12/14 16:56:51 by mdekker       ########   odam.nl         */
+/*   Updated: 2023/12/18 13:35:50 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,5 @@ bool	vec_push(t_vector *vec, void *data)
 			vec->type_size))
 		return (false);
 	vec->length++;
-	free(data);
 	return (true);
 }
