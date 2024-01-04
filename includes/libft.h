@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/21 11:59:35 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/12/17 17:49:41 by mdekker       ########   odam.nl         */
+/*   Updated: 2024/01/04 13:40:38 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ char			*ft_strrchr(const char *s, int c);
 char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 int				checkchar(char c, char *comparison);
+int				checkstr(char *str, char *comparison);
 int				ft_strcmp(const char *s1, const char *s2);
 char			*ft_lstrchr(const char *s, int c, int len);
 
