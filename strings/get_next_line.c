@@ -6,62 +6,52 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/16 23:39:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/12/17 17:41:22 by mdekker       ########   odam.nl         */
+/*   Updated: 2024/02/01 02:50:31 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
+#include <stdio.h>
 
 /**
- * @brief A scuffed memcpy that copies the remaining buffer to the beginning.
+ * @brief A wrapper for vec_char_push so it pushes until a newline is found.
  *
- * @param x The struct containing the concat variables.
- * @param bufflen The length of the buffer.
- * @param buff The buffer to copy from.
+ * @param line The vector to push to.
+ * @param buff The buffer to push from.
+ * @param length The length of the buffer.
+ * @return true When succeeded.
+ * @return false When failed.
  */
-static void	ft_copy_magic(t_concat *x, int bufflen, char *buff)
+static bool	push_until_nl(t_vector *line, char *buff, int length)
 {
-	while (x->j < bufflen && buff[x->j] != '\0' && !x->found)
+	int	i;
+
+	i = 0;
+	while (i < length && buff[i] != '\n')
 	{
-		x->new[x->i] = buff[x->j];
-		if (x->new[x->i] == '\n')
-			x->found = 1;
-		x->i++;
-		x->j++;
+		if (!vec_char_push(line, buff[i]))
+			return (false);
+		i++;
 	}
+	return (true);
 }
 
 /**
- * @brief A function to elongate the line with the buffer.
+ * @brief A wrapper for vec_resize so it returns the vector in
+ * the form of a char*.
  *
- * @param line The line to elongate.
- * @param buff The buffer to elongate the line with.
- * @param bufflen The length of the buffer.
- * @return char* The new line.
+ * @param line The vector to resize.
+ * @return char* The vector in the form of a char*. NULL when failed.
  */
-static char	*concat(char *line, char *buff, int bufflen)
+static char	*resize_and_return(t_vector *line)
 {
-	t_concat	v;
-
-	v.i = 0;
-	v.found = 0;
-	v.j = 0;
-	if (!bufflen)
-		bufflen = 1;
-	v.size = bufflen + 1;
-	if (line != NULL)
-		v.size += ft_strlen(line);
-	v.new = ft_calloc(v.size, sizeof(char));
-	if (!v.new)
-		return (free(line), NULL);
-	while (line != NULL && line[v.i])
+	if (!vec_resize(line, line->length + 1))
 	{
-		v.new[v.i] = line[v.i];
-		v.i++;
+		free(line->data);
+		return (NULL);
 	}
-	ft_copy_magic(&v, bufflen, buff);
-	v.new[v.i] = '\0';
-	return (free(line), v.new);
+	((char *)line->data)[line->length + 1] = '\0';
+	return ((char *)line->data);
 }
 
 /**
@@ -101,30 +91,28 @@ static void	get_remaining_buff(t_gnl *buffer)
  * @param fd The file descriptor to read from.
  * @return char* The line read from the file descriptor.
  */
-static char	*read_line(t_gnl *buffer, char *line, int fd)
+static bool	read_line(t_gnl *buffer, t_vector *line, int fd)
 {
-	int	found;
-	int	bufflen;
+	bool	found;
 
-	bufflen = 1;
-	found = 0;
-	while (bufflen > 0 && !found)
+	found = false;
+	while (!found)
 	{
-		bufflen = read(fd, buffer->buff, BUFFER_SIZE);
-		buffer->length = bufflen;
-		if (bufflen == 0)
+		buffer->length = read(fd, buffer->buff, BUFFER_SIZE);
+		if (buffer->length == 0)
 			break ;
-		if (bufflen < 0)
+		if (buffer->length < 0)
 		{
-			free(line);
-			return (NULL);
+			free(line->data);
+			return (false);
 		}
-		line = concat(line, buffer->buff, bufflen);
+		if (!push_until_nl(line, buffer->buff, buffer->length))
+			return (false);
 		if (ft_lstrchr(buffer->buff, '\n', buffer->length))
-			found = 1;
+			found = true;
 		get_remaining_buff(buffer);
 	}
-	return (line);
+	return (true);
 }
 
 /**
@@ -136,25 +124,28 @@ static char	*read_line(t_gnl *buffer, char *line, int fd)
 char	*get_next_line(int fd)
 {
 	static t_gnl	buffer;
-	char			*line;
+	t_vector		line;
 
-	line = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if ((fd < 0 || BUFFER_SIZE <= 0) || !vec_init(&line, BUFFER_SIZE,
+			sizeof(char), NULL))
 		return (NULL);
 	if (buffer.length > 0)
 	{
 		if (ft_lstrchr(buffer.buff, '\n', buffer.length))
 		{
-			line = concat(line, buffer.buff, buffer.length);
+			if (!push_until_nl(&line, buffer.buff, buffer.length))
+				return (NULL);
 			get_remaining_buff(&buffer);
-			return (line);
+			return (resize_and_return(&line));
 		}
 		else
 		{
-			line = concat(line, buffer.buff, buffer.length);
+			if (!push_until_nl(&line, buffer.buff, buffer.length))
+				return (NULL);
 			buffer.length = 0;
 		}
 	}
-	line = read_line(&buffer, line, fd);
-	return (line);
+	if (!read_line(&buffer, &line, fd))
+		return (NULL);
+	return (resize_and_return(&line));
 }
