@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/05 15:14:41 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/18 00:16:12 by mdekker       ########   odam.nl         */
+/*   Updated: 2024/02/01 02:42:11 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@
 void	ft_putendl_fd(char *s, int fd)
 {
 	ft_putstr_fd(s, fd);
-	write(fd, "\n", 1);
+	if (write(fd, "\n", 1) == -1)
+		return ;
 }
