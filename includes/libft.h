@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/21 11:59:35 by mdekker       #+#    #+#                 */
-/*   Updated: 2024/02/01 03:02:28 by mdekker       ########   odam.nl         */
+/*   Updated: 2024/02/01 17:49:02 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int			ft_intlen(int n);
 /*
 ** Get Next Line
 */
-# define BUFFER_SIZE 32
+# define BUFFER_SIZE 128
 
 char		*get_next_line(int fd);
 

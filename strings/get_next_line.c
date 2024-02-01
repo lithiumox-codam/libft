@@ -6,12 +6,11 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/16 23:39:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2024/02/01 02:50:31 by mdekker       ########   odam.nl         */
+/*   Updated: 2024/02/01 17:48:22 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
-#include <stdio.h>
 
 /**
  * @brief A wrapper for vec_char_push so it pushes until a newline is found.
@@ -50,7 +49,7 @@ static char	*resize_and_return(t_vector *line)
 		free(line->data);
 		return (NULL);
 	}
-	((char *)line->data)[line->length + 1] = '\0';
+	((char *)line->data)[line->length] = '\0';
 	return ((char *)line->data);
 }
 
@@ -61,7 +60,7 @@ static char	*resize_and_return(t_vector *line)
  * the remaining buffer is put in the beginning of the buffer. This is done so
  * the next call to get_next_line it will read the remaining buffer first.
  *
- * @param buffer
+ * @param buffer The struct containing the buffer.
  */
 static void	get_remaining_buff(t_gnl *buffer)
 {
