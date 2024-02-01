@@ -6,11 +6,12 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/16 23:39:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2024/02/01 17:48:22 by mdekker       ########   odam.nl         */
+/*   Updated: 2024/02/01 18:54:53 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
+#include <stdio.h>
 
 /**
  * @brief A wrapper for vec_char_push so it pushes until a newline is found.
@@ -32,6 +33,11 @@ static bool	push_until_nl(t_vector *line, char *buff, int length)
 			return (false);
 		i++;
 	}
+	if (buff[i] == '\n')
+	{
+		if (!vec_char_push(line, buff[i]))
+			return (false);
+	}
 	return (true);
 }
 
@@ -44,12 +50,11 @@ static bool	push_until_nl(t_vector *line, char *buff, int length)
  */
 static char	*resize_and_return(t_vector *line)
 {
+	if (line->length == 0)
+		return (free(line->data), NULL);
 	if (!vec_resize(line, line->length + 1))
-	{
-		free(line->data);
-		return (NULL);
-	}
-	((char *)line->data)[line->length] = '\0';
+		return (free(line->data), NULL);
+	vec_char_push(line, '\0');
 	return ((char *)line->data);
 }
 
