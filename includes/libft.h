@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/21 11:59:35 by mdekker       #+#    #+#                 */
-/*   Updated: 2024/02/01 17:49:02 by mdekker       ########   odam.nl         */
+/*   Updated: 2024/02/20 15:24:13 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int			ft_toupper(int c);
 /*
 ** IO
 */
-void		ft_putchar_fd(char c, int fd);
-void		ft_putendl_fd(char *s, int fd);
+void		ft_putchar_fd(const char c, int fd);
+void		ft_putendl_fd(const char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
-void		ft_putstr_fd(char *s, int fd);
+void		ft_putstr_fd(const char *s, int fd);
 
 /*
 ** Memory
