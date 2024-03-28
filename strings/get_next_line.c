@@ -3,158 +3,132 @@
 /*                                                        ::::::::            */
 /*   get_next_line.c                                    :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
+/*   By: mvalk <mvalk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/12/16 23:39:37 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/12/17 17:41:22 by mdekker       ########   odam.nl         */
+/*   Created: 2022/11/17 13:43:21 by mvalk         #+#    #+#                 */
+/*   Updated: 2024/03/28 14:00:49 by mvalk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
+#include <limits.h>
+#include <fcntl.h>
+#include <stddef.h>
 
-/**
- * @brief A scuffed memcpy that copies the remaining buffer to the beginning.
- *
- * @param x The struct containing the concat variables.
- * @param bufflen The length of the buffer.
- * @param buff The buffer to copy from.
- */
-static void	ft_copy_magic(t_concat *x, int bufflen, char *buff)
+static void	*ft_free_2(char *str)
 {
-	while (x->j < bufflen && buff[x->j] != '\0' && !x->found)
-	{
-		x->new[x->i] = buff[x->j];
-		if (x->new[x->i] == '\n')
-			x->found = 1;
-		x->i++;
-		x->j++;
-	}
+	free (str);
+	return (NULL);
 }
 
-/**
- * @brief A function to elongate the line with the buffer.
- *
- * @param line The line to elongate.
- * @param buff The buffer to elongate the line with.
- * @param bufflen The length of the buffer.
- * @return char* The new line.
- */
-static char	*concat(char *line, char *buff, int bufflen)
+static char	*ft_line_merge(char *s1, const char *s2)
 {
-	t_concat	v;
+	char	*ptr;
+	size_t	s1len;
+	size_t	s2len;
+	size_t	i;
 
-	v.i = 0;
-	v.found = 0;
-	v.j = 0;
-	if (!bufflen)
-		bufflen = 1;
-	v.size = bufflen + 1;
-	if (line != NULL)
-		v.size += ft_strlen(line);
-	v.new = ft_calloc(v.size, sizeof(char));
-	if (!v.new)
-		return (free(line), NULL);
-	while (line != NULL && line[v.i])
-	{
-		v.new[v.i] = line[v.i];
-		v.i++;
-	}
-	ft_copy_magic(&v, bufflen, buff);
-	v.new[v.i] = '\0';
-	return (free(line), v.new);
+	if (!s1)
+		return (NULL);
+	s1len = ft_strlen(s1);
+	s2len = ft_strlen(s2);
+	ptr = (char *)malloc (s1len + s2len + 1);
+	if (!ptr)
+		return (ft_free_2(s1));
+	i = -1;
+	while (s1[++i] != '\0')
+		ptr[i] = s1[i];
+	i = -1;
+	while (s2[++i] != '\0')
+		ptr[s1len + i] = s2[i];
+	ptr[s1len + s2len] = '\0';
+	free (s1);
+	return (ptr);
 }
 
-/**
- * @brief Get the remaining buffer if a newline is found.
- *
- * @note This function is only called when a newline is found in the buffer. And
- * the remaining buffer is put in the beginning of the buffer. This is done so
- * the next call to get_next_line it will read the remaining buffer first.
- *
- * @param buffer
- */
-static void	get_remaining_buff(t_gnl *buffer)
+/**reads from fd to buffer until \n or eof
+concatenates 'saved_str' and 'buffer' until \n or eof
+returns a pointer to the created string*/
+static char	*ft_read_line(int fd, char *saved_str)
 {
-	int	i;
-	int	j;
+	char		buffer[BUFFER_SIZE + 1];
+	int			read_bytes;
 
-	i = 0;
-	while (i < buffer->length && buffer->buff[i] != '\n')
-		i++;
-	if (i < buffer->length)
-		i++;
-	j = 0;
-	while (i < buffer->length)
+	read_bytes = 1;
+	if (!saved_str)
+		saved_str = ft_strdup("");
+	if (!saved_str)
+		return (NULL);
+	buffer[0] = '\0';
+	while (read_bytes && !ft_strchr(buffer, '\n'))
 	{
-		buffer->buff[j] = buffer->buff[i];
-		i++;
-		j++;
-	}
-	buffer->length = j;
-}
-
-/**
- * @brief A wrapper for read() so it modifies the variables in the struct.
- *
- * @param buffer The struct containing the buffer.
- * @param line The line read from the file descriptor.
- * @param fd The file descriptor to read from.
- * @return char* The line read from the file descriptor.
- */
-static char	*read_line(t_gnl *buffer, char *line, int fd)
-{
-	int	found;
-	int	bufflen;
-
-	bufflen = 1;
-	found = 0;
-	while (bufflen > 0 && !found)
-	{
-		bufflen = read(fd, buffer->buff, BUFFER_SIZE);
-		buffer->length = bufflen;
-		if (bufflen == 0)
-			break ;
-		if (bufflen < 0)
-		{
-			free(line);
+		read_bytes = read(fd, buffer, BUFFER_SIZE);
+		if (read_bytes == -1)
+			return (ft_free_2(saved_str));
+		buffer[read_bytes] = '\0';
+		saved_str = ft_line_merge(saved_str, buffer);
+		if (!saved_str)
 			return (NULL);
-		}
-		line = concat(line, buffer->buff, bufflen);
-		if (ft_lstrchr(buffer->buff, '\n', buffer->length))
-			found = 1;
-		get_remaining_buff(buffer);
 	}
-	return (line);
+	if (!saved_str[0])
+		return (ft_free_2(saved_str));
+	return (saved_str);
 }
 
-/**
- * @brief get_next_line reads a line from a file descriptor and returns it.
- *
- * @param fd The file descriptor to read from.
- * @return char* The line read from the file descriptor.
- */
+/**trims the input 'str'
+returns a pointer to a copy of 'str' until the newline if saved = 0
+returns a pointer to a copy of 'str' from newline to \0 if saved = 1*/
+static char	*ft_trim_str(char	*str, int saved)
+{
+	int		saved_i;
+	char	*trimmed_str;
+
+	saved_i = 0;
+	while (str[saved_i])
+	{
+		if (str[saved_i] == '\n')
+		{
+			if (saved == 1)
+				trimmed_str = ft_strdup(&str[saved_i] + 1);
+			else
+			{
+				str[saved_i + 1] = '\0';
+				trimmed_str = ft_strdup(str);
+			}
+			free (str);
+			return (trimmed_str);
+		}
+		saved_i++;
+	}
+	if (saved == 1)
+		return (ft_free_2(str));
+	return (str);
+}
+
 char	*get_next_line(int fd)
 {
-	static t_gnl	buffer;
-	char			*line;
+	static char	*saved_str[128];
+	char		*line;
 
-	line = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 128 || BUFFER_SIZE > INT_MAX)
 		return (NULL);
-	if (buffer.length > 0)
+	saved_str[fd] = ft_read_line(fd, saved_str[fd]);
+	if (!saved_str[fd])
+		return (NULL);
+	line = ft_strdup(saved_str[fd]);
+	if (!line)
 	{
-		if (ft_lstrchr(buffer.buff, '\n', buffer.length))
-		{
-			line = concat(line, buffer.buff, buffer.length);
-			get_remaining_buff(&buffer);
-			return (line);
-		}
-		else
-		{
-			line = concat(line, buffer.buff, buffer.length);
-			buffer.length = 0;
-		}
+		free(saved_str[fd]);
+		saved_str[fd] = NULL;
+		return (NULL);
 	}
-	line = read_line(&buffer, line, fd);
+	saved_str[fd] = ft_trim_str(saved_str[fd], 1);
+	line = ft_trim_str(line, 0);
+	if (!line)
+	{
+		free(saved_str[fd]);
+		saved_str[fd] = NULL;
+		return (NULL);
+	}
 	return (line);
 }
