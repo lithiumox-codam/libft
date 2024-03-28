@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/05 16:33:04 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/07/18 00:16:12 by mdekker       ########   odam.nl         */
+/*   Updated: 2024/02/20 15:24:18 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
  * @param c The character to write
  * @param fd The file descriptor to write to
  */
-void	ft_putchar_fd(char c, int fd)
+void	ft_putchar_fd(const char c, int fd)
 {
-	write(fd, &c, 1);
+	if (write(fd, &c, 1) == -1)
+		return ;
 }

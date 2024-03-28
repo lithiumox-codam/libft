@@ -6,7 +6,7 @@
 /*   By: mdekker <mdekker@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/07/12 21:52:28 by mdekker       #+#    #+#                 */
-/*   Updated: 2023/12/14 16:57:17 by mdekker       ########   odam.nl         */
+/*   Updated: 2024/02/01 17:36:59 by mdekker       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 		return (ptr);
 	if (old_size > new_size)
 		old_size = new_size;
-	new = ft_calloc(1, new_size);
+	new = malloc(new_size);
 	if (!new)
 		return (NULL);
 	if (ptr != NULL)

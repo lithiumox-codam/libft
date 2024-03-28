@@ -1,12 +1,7 @@
 .PHONY: all clean fclean re run test submodules
 
-DEBUG ?= 0
-ifeq ($(DEBUG), 1)
-	CFLAGS += -g
-endif
-
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror $(if $(DEBUG), -g, -O3)
 NAME = libft.a
 INCLUDES = -I $(CURDIR)/includes
 BUILDDIR = build
